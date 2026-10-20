@@ -16,3 +16,6 @@ scratch/
 # Order HTML archives (keep orders.json)
 orders/*.html
 !orders/orders.json
+
+# Vercel
+.vercel/

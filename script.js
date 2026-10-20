@@ -3981,5 +3981,149 @@ document.addEventListener('DOMContentLoaded', () => {
       updateScrollspyActive();
     }
   });
+
+  // ------------------------------------------------------------
+  // CINEMATIC BLACK SCREEN INTRO: THE GINI PARADISE & GROWING BLUE ROSES
+  // ------------------------------------------------------------
+  function initSiteIntro() {
+    const introOverlay = document.getElementById('siteIntroScreen');
+    if (!introOverlay) return;
+
+    const typedTextEl = document.getElementById('introTypedText');
+    const subtitleEl = document.getElementById('introSubtitle');
+    const skipBtn = document.getElementById('introSkipBtn');
+
+    const titleToType = "Welcome to Gini's Paradise ♡";
+    let isIntroFinished = false;
+
+    // Ensure body has intro-active initially
+    document.body.classList.add('intro-active');
+
+    // Trigger music autoplay immediately right as the intro starts
+    if (typeof attemptAutoPlay === 'function' && !isCasettePlaying) {
+      attemptAutoPlay();
+    }
+
+    // Setup SVG stem lengths for smooth stroke-dashoffset drawing
+    const stems = introOverlay.querySelectorAll('.vine-stem');
+    stems.forEach(stem => {
+      try {
+        const len = stem.getTotalLength ? stem.getTotalLength() : 100;
+        stem.style.strokeDasharray = `${len}`;
+        stem.style.strokeDashoffset = `${len}`;
+      } catch (e) {
+        stem.style.strokeDasharray = '100';
+        stem.style.strokeDashoffset = '100';
+      }
+    });
+
+    // 1. Typewriter Animation for "Welcome to Gini's Paradise ♡"
+    let charIdx = 0;
+    function runTypewriter() {
+      if (isIntroFinished) return;
+      if (charIdx < titleToType.length) {
+        if (typedTextEl) {
+          typedTextEl.textContent += titleToType.charAt(charIdx);
+        }
+        charIdx++;
+        setTimeout(runTypewriter, 55);
+      } else {
+        // Typing finished -> show subtitle softly
+        setTimeout(() => {
+          if (!isIntroFinished && subtitleEl) {
+            subtitleEl.classList.add('is-visible');
+          }
+        }, 320);
+      }
+    }
+
+    // Start typewriter at T = 350ms
+    setTimeout(runTypewriter, 350);
+
+    // 2. Botanical Vine Stem Growth from bottom-left & bottom-right
+    // Trigger at T = 1500ms
+    setTimeout(() => {
+      if (isIntroFinished) return;
+      stems.forEach(stem => {
+        stem.style.strokeDashoffset = '0';
+        stem.classList.add('stem-drawn');
+      });
+    }, 1500);
+
+    // 3. Sequential Leaves Unfurling (From Root to Tip)
+    // Leaf 1 (near root) at T = 2200ms
+    setTimeout(() => {
+      if (isIntroFinished) return;
+      introOverlay.querySelectorAll('.vine-leaf-1').forEach(leaf => leaf.classList.add('leaf-grown'));
+    }, 2200);
+
+    // Leaf 2 & 3 (mid branches) at T = 2750ms
+    setTimeout(() => {
+      if (isIntroFinished) return;
+      introOverlay.querySelectorAll('.vine-leaf-2, .vine-leaf-3').forEach(leaf => leaf.classList.add('leaf-grown'));
+    }, 2750);
+
+    // Leaf 4 (sub-terminal below rose) at T = 3200ms
+    setTimeout(() => {
+      if (isIntroFinished) return;
+      introOverlay.querySelectorAll('.vine-leaf-4').forEach(leaf => leaf.classList.add('leaf-grown'));
+    }, 3200);
+
+    // 4. Blue Rose Blooming at Crest of Vines at T = 3500ms
+    setTimeout(() => {
+      if (isIntroFinished) return;
+      introOverlay.querySelectorAll('.vine-rose-bloom').forEach(rose => rose.classList.add('rose-bloomed'));
+    }, 3500);
+
+    // 5. Finish and Smooth Dissolve Transition into Main Site
+    // At T = 5600ms
+    function finishIntroTransition() {
+      if (isIntroFinished) return;
+      isIntroFinished = true;
+
+      // Start background music seamlessly if available
+      try {
+        if (typeof attemptAutoPlay === 'function' && !isCasettePlaying) {
+          attemptAutoPlay();
+        } else if (typeof playCasette === 'function' && !isCasettePlaying) {
+          playCasette(false);
+        }
+      } catch (e) {}
+
+      // Fade out the black screen with cinematic blur & scale
+      introOverlay.classList.add('is-fading-out');
+
+      // Re-enable document scrolling
+      document.body.classList.remove('intro-active');
+
+      setTimeout(() => {
+        introOverlay.style.display = 'none';
+        introOverlay.setAttribute('aria-hidden', 'true');
+      }, 1300);
+    }
+
+    // Auto-transition after 5.6s
+    const introTimer = setTimeout(finishIntroTransition, 5600);
+
+    // Skip button manual trigger
+    if (skipBtn) {
+      skipBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearTimeout(introTimer);
+        // Ensure audio resumes on skip interaction
+        if (typeof casetteCtx !== 'undefined' && casetteCtx && casetteCtx.state === 'suspended') {
+          casetteCtx.resume().catch(() => {});
+        }
+        if (typeof attemptAutoPlay === 'function' && !isCasettePlaying) {
+          attemptAutoPlay();
+        }
+        finishIntroTransition();
+      });
+    }
+  }
+
+  // Initialize intro on page load
+  initSiteIntro();
 });
+
 

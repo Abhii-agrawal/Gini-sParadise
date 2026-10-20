@@ -21,7 +21,7 @@
   <link rel="preload" href="outro-video.mp4" as="video" type="video/mp4">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="style.css?v=19">
 
   <!-- Instant Theme Persistence (Anti-FOUC: Default Light Mode) -->
   <script>
@@ -36,7 +36,246 @@
     })();
   </script>
 </head>
-<body>
+<body class="intro-active">
+
+  <!-- ============================================================
+       CINEMATIC BLACK SCREEN INTRO: THE GINI PARADISE & GROWING BLUE ROSES
+       ============================================================ -->
+  <div id="siteIntroScreen" class="site-intro-overlay" aria-label="Intro cinematic experience">
+    
+    <!-- Ambient Starlight Glow -->
+    <div class="intro-ambient-glow"></div>
+
+    <!-- Floating Stardust Particles -->
+    <div class="intro-particles-layer">
+      <span class="intro-star-particle p1">✦</span>
+      <span class="intro-star-particle p2">·</span>
+      <span class="intro-star-particle p3">✧</span>
+      <span class="intro-star-particle p4">·</span>
+      <span class="intro-star-particle p5">✦</span>
+      <span class="intro-star-particle p6">·</span>
+      <span class="intro-star-particle p7">✧</span>
+      <span class="intro-star-particle p8">·</span>
+    </div>
+
+    <!-- Quick Skip Control -->
+    <button id="introSkipBtn" class="intro-skip-btn" title="Skip Intro">
+      <span>Skip</span>
+      <span class="skip-arrow">→</span>
+    </button>
+
+    <!-- Center Stage: Typewriter "Welcome to Gini's Paradise ♡" -->
+    <div class="intro-center-stage">
+      <div class="intro-sparkle-badge" id="introBadge">
+        <span class="intro-sparkle-star">✧</span>
+        <span class="intro-sparkle-heart">💙</span>
+        <span class="intro-sparkle-star">✧</span>
+      </div>
+      <h1 class="intro-title" aria-label="Welcome to Gini's Paradise ♡">
+        <span class="intro-typed-text" id="introTypedText"></span><span class="intro-cursor" id="introCursor">|</span>
+      </h1>
+      <p class="intro-subtitle" id="introSubtitle">
+        proof that the universe has a favourite. ✨
+      </p>
+    </div>
+
+    <!-- Bottom Left Growing Blue Rose Vine SVG -->
+    <div class="intro-vine-container intro-vine-left" id="introVineLeft">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="intro-vine-svg">
+        <defs>
+          <linearGradient id="introStemGradL" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#14532d"/>
+            <stop offset="40%" stop-color="#16a34a"/>
+            <stop offset="85%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#4ade80"/>
+          </linearGradient>
+          <linearGradient id="introLeafGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="60%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#15803d"/>
+          </linearGradient>
+          <linearGradient id="introRoseMainL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="35%" stop-color="#2563eb"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+          </linearGradient>
+          <linearGradient id="introRoseDarkL" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#1e40af"/>
+            <stop offset="60%" stop-color="#1d4ed8"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="introRoseGlowL" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="60%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+          <filter id="introRoseBloomFilterL" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-color="#3b82f6" flood-opacity="0.6" result="glowColor"/>
+            <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Main Vine Stem from Root to Crest -->
+        <path id="stemLeftMain" class="vine-stem vine-stem-main" pathLength="100"
+          d="M 0 400 C 45 385, 75 340, 90 280 C 105 220, 135 155, 185 85"
+          stroke="url(#introStemGradL)" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- Secondary Side Branches -->
+        <path id="branchLeft1" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 60 345 C 50 330, 35 315, 25 310"
+          stroke="url(#introStemGradL)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchLeft2" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 98 250 C 120 240, 145 245, 160 255"
+          stroke="url(#introStemGradL)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchLeft3" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 125 170 C 110 150, 95 145, 80 148"
+          stroke="url(#introStemGradL)" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Leaves Growing Out From Root Towards Leaf Edge -->
+        <g class="vine-leaf vine-leaf-1" style="transform-origin: 25px 310px;">
+          <path d="M 25 310 C 15 295, 20 275, 40 280 C 50 295, 40 312, 25 310 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 25 310 Q 30 295 40 280" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-2" style="transform-origin: 160px 255px;">
+          <path d="M 160 255 C 180 250, 195 265, 190 285 C 170 290, 155 275, 160 255 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 160 255 Q 175 270 190 285" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-3" style="transform-origin: 80px 148px;">
+          <path d="M 80 148 C 65 130, 50 140, 48 160 C 62 170, 78 162, 80 148 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 80 148 Q 62 150 48 160" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-4" style="transform-origin: 165px 115px;">
+          <path d="M 165 115 C 190 105, 205 120, 198 135 C 175 140, 160 128, 165 115 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 165 115 Q 185 122 198 135" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <!-- Blooming Royal Blue Rose at Crest of Vine -->
+        <g class="vine-rose-bloom" id="roseBloomLeft" filter="url(#introRoseBloomFilterL)" style="transform-origin: 185px 85px;">
+          <path d="M 178 88 C 173 97, 168 103, 162 105 C 169 99, 175 93, 178 88 Z" fill="#15803d"/>
+          <path d="M 192 88 C 197 97, 202 103, 208 105 C 201 99, 195 93, 192 88 Z" fill="#15803d"/>
+          <path d="M 185 91 C 185 99, 184 105, 185 108 C 186 105, 186 99, 185 91 Z" fill="#16a34a"/>
+
+          <path class="rose-petal petal-back" d="M 162 55 C 158 35, 185 28, 185 28 C 185 28, 212 35, 208 55 C 208 72, 196 85, 185 90 C 174 85, 162 72, 162 55 Z" fill="url(#introRoseDarkL)"/>
+          <path class="rose-petal petal-side-left" d="M 156 50 C 148 64, 154 80, 168 89 C 174 84, 172 70, 168 58 C 165 52, 160 48, 156 50 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-glow-left" d="M 156 50 C 157 42, 166 38, 176 44 C 168 48, 163 56, 160 65 C 157 60, 156 54, 156 50 Z" fill="url(#introRoseGlowL)" opacity="0.9"/>
+          <path class="rose-petal petal-side-right" d="M 214 50 C 222 64, 216 80, 202 89 C 196 84, 198 70, 202 58 C 205 52, 210 48, 214 50 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-glow-right" d="M 214 50 C 213 42, 204 38, 194 44 C 202 48, 207 56, 210 65 C 213 60, 214 54, 214 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-front" d="M 160 58 C 160 76, 172 90, 185 92 C 198 90, 210 76, 210 58 C 200 66, 190 69, 185 69 C 180 69, 170 66, 160 58 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-core" d="M 174 46 C 174 38, 184 34, 186 34 C 193 34, 195 40, 193 47 C 191 52, 184 56, 180 56 C 175 56, 174 52, 174 46 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-core-rim" d="M 178 42 C 181 37, 187 37, 189 39 C 189 42, 186 44, 184 44 C 181 44, 178 43, 178 42 Z" fill="url(#introRoseGlowL)"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bottom Right Growing Blue Rose Vine SVG (Mirrored) -->
+    <div class="intro-vine-container intro-vine-right" id="introVineRight">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="intro-vine-svg">
+        <defs>
+          <linearGradient id="introStemGradR" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#14532d"/>
+            <stop offset="40%" stop-color="#16a34a"/>
+            <stop offset="85%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#4ade80"/>
+          </linearGradient>
+          <linearGradient id="introLeafGradR" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="60%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#15803d"/>
+          </linearGradient>
+          <linearGradient id="introRoseMainR" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="35%" stop-color="#2563eb"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+          </linearGradient>
+          <linearGradient id="introRoseDarkR" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#1e40af"/>
+            <stop offset="60%" stop-color="#1d4ed8"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="introRoseGlowR" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="60%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+          <filter id="introRoseBloomFilterR" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-color="#3b82f6" flood-opacity="0.6" result="glowColor"/>
+            <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Main Vine Stem from Root to Crest -->
+        <path id="stemRightMain" class="vine-stem vine-stem-main" pathLength="100"
+          d="M 0 400 C 45 385, 75 340, 90 280 C 105 220, 135 155, 185 85"
+          stroke="url(#introStemGradR)" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- Secondary Side Branches -->
+        <path id="branchRight1" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 60 345 C 50 330, 35 315, 25 310"
+          stroke="url(#introStemGradR)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchRight2" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 98 250 C 120 240, 145 245, 160 255"
+          stroke="url(#introStemGradR)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchRight3" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 125 170 C 110 150, 95 145, 80 148"
+          stroke="url(#introStemGradR)" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Leaves Growing Out From Root Towards Leaf Edge -->
+        <g class="vine-leaf vine-leaf-1" style="transform-origin: 25px 310px;">
+          <path d="M 25 310 C 15 295, 20 275, 40 280 C 50 295, 40 312, 25 310 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 25 310 Q 30 295 40 280" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-2" style="transform-origin: 160px 255px;">
+          <path d="M 160 255 C 180 250, 195 265, 190 285 C 170 290, 155 275, 160 255 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 160 255 Q 175 270 190 285" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-3" style="transform-origin: 80px 148px;">
+          <path d="M 80 148 C 65 130, 50 140, 48 160 C 62 170, 78 162, 80 148 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 80 148 Q 62 150 48 160" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-4" style="transform-origin: 165px 115px;">
+          <path d="M 165 115 C 190 105, 205 120, 198 135 C 175 140, 160 128, 165 115 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 165 115 Q 185 122 198 135" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <!-- Blooming Royal Blue Rose at Crest of Vine -->
+        <g class="vine-rose-bloom" id="roseBloomRight" filter="url(#introRoseBloomFilterR)" style="transform-origin: 185px 85px;">
+          <path d="M 178 88 C 173 97, 168 103, 162 105 C 169 99, 175 93, 178 88 Z" fill="#15803d"/>
+          <path d="M 192 88 C 197 97, 202 103, 208 105 C 201 99, 195 93, 192 88 Z" fill="#15803d"/>
+          <path d="M 185 91 C 185 99, 184 105, 185 108 C 186 105, 186 99, 185 91 Z" fill="#16a34a"/>
+
+          <path class="rose-petal petal-back" d="M 162 55 C 158 35, 185 28, 185 28 C 185 28, 212 35, 208 55 C 208 72, 196 85, 185 90 C 174 85, 162 72, 162 55 Z" fill="url(#introRoseDarkR)"/>
+          <path class="rose-petal petal-side-left" d="M 156 50 C 148 64, 154 80, 168 89 C 174 84, 172 70, 168 58 C 165 52, 160 48, 156 50 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-glow-left" d="M 156 50 C 157 42, 166 38, 176 44 C 168 48, 163 56, 160 65 C 157 60, 156 54, 156 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-side-right" d="M 214 50 C 222 64, 216 80, 202 89 C 196 84, 198 70, 202 58 C 205 52, 210 48, 214 50 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-glow-right" d="M 214 50 C 213 42, 204 38, 194 44 C 202 48, 207 56, 210 65 C 213 60, 214 54, 214 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-front" d="M 160 58 C 160 76, 172 90, 185 92 C 198 90, 210 76, 210 58 C 200 66, 190 69, 185 69 C 180 69, 170 66, 160 58 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-core" d="M 174 46 C 174 38, 184 34, 186 34 C 193 34, 195 40, 193 47 C 191 52, 184 56, 180 56 C 175 56, 174 52, 174 46 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-core-rim" d="M 178 42 C 181 37, 187 37, 189 39 C 189 42, 186 44, 184 44 C 181 44, 178 43, 178 42 Z" fill="url(#introRoseGlowR)"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
 
   <!-- Ultra-fine Liquid Scroll Progress Ribbon -->
   <div class="scroll-liquid-progress" id="scrollProgressIndicator"></div>
@@ -1493,7 +1732,7 @@
   <script src="data/playlist.js?v=3"></script>
   <script src="data/personal-letter.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=19"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();

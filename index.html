@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BestFriends ♡ — The Gini Paradise Always 💙</title>
+  <meta name="description" content="Every moment, every laugh, every memory — this is us.">
+  
+  <!-- Google Fonts: Poppins (Whole Website) & Caveat (Signatures) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Preload Outro Video for Instant, Lag-Free Web Streaming -->
+  <link rel="preload" href="outro-video.mp4" as="video" type="video/mp4">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=15">
+
+  <!-- Instant Theme Persistence (Anti-FOUC: Default Light Mode) -->
+  <script>
+    (function() {
+      try {
+        localStorage.removeItem('gini_theme');
+        if (sessionStorage.getItem('gini_theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="intro-active">
+
+  <!-- ============================================================
+       CINEMATIC BLACK SCREEN INTRO: THE GINI PARADISE & GROWING BLUE ROSES
+       ============================================================ -->
+  <div id="siteIntroScreen" class="site-intro-overlay" aria-label="Intro cinematic experience">
+    
+    <!-- Ambient Starlight Glow -->
+    <div class="intro-ambient-glow"></div>
+
+    <!-- Floating Stardust Particles -->
+    <div class="intro-particles-layer">
+      <span class="intro-star-particle p1">✦</span>
+      <span class="intro-star-particle p2">·</span>
+      <span class="intro-star-particle p3">✧</span>
+      <span class="intro-star-particle p4">·</span>
+      <span class="intro-star-particle p5">✦</span>
+      <span class="intro-star-particle p6">·</span>
+      <span class="intro-star-particle p7">✧</span>
+      <span class="intro-star-particle p8">·</span>
+    </div>
+
+    <!-- Quick Skip Control -->
+    <button id="introSkipBtn" class="intro-skip-btn" title="Skip Intro">
+      <span>Skip</span>
+      <span class="skip-arrow">→</span>
+    </button>
+
+    <!-- Center Stage: Typewriter "Welcome to Gini's Paradise ♡" -->
+    <div class="intro-center-stage">
+      <div class="intro-sparkle-badge" id="introBadge">
+        <span class="intro-sparkle-star">✧</span>
+        <span class="intro-sparkle-heart">💙</span>
+        <span class="intro-sparkle-star">✧</span>
+      </div>
+      <h1 class="intro-title" aria-label="Welcome to Gini's Paradise ♡">
+        <span class="intro-typed-text" id="introTypedText"></span><span class="intro-cursor" id="introCursor">|</span>
+      </h1>
+      <p class="intro-subtitle" id="introSubtitle">
+        proof that the universe has a favourite. ✨
+      </p>
+    </div>
+
+    <!-- Bottom Left Growing Blue Rose Vine SVG -->
+    <div class="intro-vine-container intro-vine-left" id="introVineLeft">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="intro-vine-svg">
+        <defs>
+          <linearGradient id="introStemGradL" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#14532d"/>
+            <stop offset="40%" stop-color="#16a34a"/>
+            <stop offset="85%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#4ade80"/>
+          </linearGradient>
+          <linearGradient id="introLeafGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="60%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#15803d"/>
+          </linearGradient>
+          <linearGradient id="introRoseMainL" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="35%" stop-color="#2563eb"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+          </linearGradient>
+          <linearGradient id="introRoseDarkL" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#1e40af"/>
+            <stop offset="60%" stop-color="#1d4ed8"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="introRoseGlowL" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="60%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+          <filter id="introRoseBloomFilterL" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-color="#3b82f6" flood-opacity="0.6" result="glowColor"/>
+            <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Main Vine Stem from Root to Crest -->
+        <path id="stemLeftMain" class="vine-stem vine-stem-main" pathLength="100"
+          d="M 0 400 C 45 385, 75 340, 90 280 C 105 220, 135 155, 185 85"
+          stroke="url(#introStemGradL)" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- Secondary Side Branches -->
+        <path id="branchLeft1" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 60 345 C 50 330, 35 315, 25 310"
+          stroke="url(#introStemGradL)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchLeft2" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 98 250 C 120 240, 145 245, 160 255"
+          stroke="url(#introStemGradL)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchLeft3" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 125 170 C 110 150, 95 145, 80 148"
+          stroke="url(#introStemGradL)" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Leaves Growing Out From Root Towards Leaf Edge -->
+        <g class="vine-leaf vine-leaf-1" style="transform-origin: 25px 310px;">
+          <path d="M 25 310 C 15 295, 20 275, 40 280 C 50 295, 40 312, 25 310 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 25 310 Q 30 295 40 280" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-2" style="transform-origin: 160px 255px;">
+          <path d="M 160 255 C 180 250, 195 265, 190 285 C 170 290, 155 275, 160 255 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 160 255 Q 175 270 190 285" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-3" style="transform-origin: 80px 148px;">
+          <path d="M 80 148 C 65 130, 50 140, 48 160 C 62 170, 78 162, 80 148 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 80 148 Q 62 150 48 160" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-4" style="transform-origin: 165px 115px;">
+          <path d="M 165 115 C 190 105, 205 120, 198 135 C 175 140, 160 128, 165 115 Z" fill="url(#introLeafGradL)"/>
+          <path d="M 165 115 Q 185 122 198 135" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <!-- Blooming Royal Blue Rose at Crest of Vine -->
+        <g class="vine-rose-bloom" id="roseBloomLeft" filter="url(#introRoseBloomFilterL)" style="transform-origin: 185px 85px;">
+          <path d="M 178 88 C 173 97, 168 103, 162 105 C 169 99, 175 93, 178 88 Z" fill="#15803d"/>
+          <path d="M 192 88 C 197 97, 202 103, 208 105 C 201 99, 195 93, 192 88 Z" fill="#15803d"/>
+          <path d="M 185 91 C 185 99, 184 105, 185 108 C 186 105, 186 99, 185 91 Z" fill="#16a34a"/>
+
+          <path class="rose-petal petal-back" d="M 162 55 C 158 35, 185 28, 185 28 C 185 28, 212 35, 208 55 C 208 72, 196 85, 185 90 C 174 85, 162 72, 162 55 Z" fill="url(#introRoseDarkL)"/>
+          <path class="rose-petal petal-side-left" d="M 156 50 C 148 64, 154 80, 168 89 C 174 84, 172 70, 168 58 C 165 52, 160 48, 156 50 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-glow-left" d="M 156 50 C 157 42, 166 38, 176 44 C 168 48, 163 56, 160 65 C 157 60, 156 54, 156 50 Z" fill="url(#introRoseGlowL)" opacity="0.9"/>
+          <path class="rose-petal petal-side-right" d="M 214 50 C 222 64, 216 80, 202 89 C 196 84, 198 70, 202 58 C 205 52, 210 48, 214 50 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-glow-right" d="M 214 50 C 213 42, 204 38, 194 44 C 202 48, 207 56, 210 65 C 213 60, 214 54, 214 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-front" d="M 160 58 C 160 76, 172 90, 185 92 C 198 90, 210 76, 210 58 C 200 66, 190 69, 185 69 C 180 69, 170 66, 160 58 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-core" d="M 174 46 C 174 38, 184 34, 186 34 C 193 34, 195 40, 193 47 C 191 52, 184 56, 180 56 C 175 56, 174 52, 174 46 Z" fill="url(#introRoseMainL)"/>
+          <path class="rose-petal petal-core-rim" d="M 178 42 C 181 37, 187 37, 189 39 C 189 42, 186 44, 184 44 C 181 44, 178 43, 178 42 Z" fill="url(#introRoseGlowL)"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Bottom Right Growing Blue Rose Vine SVG (Mirrored) -->
+    <div class="intro-vine-container intro-vine-right" id="introVineRight">
+      <svg viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="intro-vine-svg">
+        <defs>
+          <linearGradient id="introStemGradR" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#14532d"/>
+            <stop offset="40%" stop-color="#16a34a"/>
+            <stop offset="85%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#4ade80"/>
+          </linearGradient>
+          <linearGradient id="introLeafGradR" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4ade80"/>
+            <stop offset="60%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#15803d"/>
+          </linearGradient>
+          <linearGradient id="introRoseMainR" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="35%" stop-color="#2563eb"/>
+            <stop offset="100%" stop-color="#1d4ed8"/>
+          </linearGradient>
+          <linearGradient id="introRoseDarkR" x1="20%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stop-color="#1e40af"/>
+            <stop offset="60%" stop-color="#1d4ed8"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+          </linearGradient>
+          <linearGradient id="introRoseGlowR" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="60%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+          <filter id="introRoseBloomFilterR" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-color="#3b82f6" flood-opacity="0.6" result="glowColor"/>
+            <feComposite in="glowColor" in2="blur" operator="in" result="glow"/>
+            <feMerge>
+              <feMergeNode in="glow"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Main Vine Stem from Root to Crest -->
+        <path id="stemRightMain" class="vine-stem vine-stem-main" pathLength="100"
+          d="M 0 400 C 45 385, 75 340, 90 280 C 105 220, 135 155, 185 85"
+          stroke="url(#introStemGradR)" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- Secondary Side Branches -->
+        <path id="branchRight1" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 60 345 C 50 330, 35 315, 25 310"
+          stroke="url(#introStemGradR)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchRight2" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 98 250 C 120 240, 145 245, 160 255"
+          stroke="url(#introStemGradR)" stroke-width="3" stroke-linecap="round"/>
+
+        <path id="branchRight3" class="vine-stem vine-stem-sub" pathLength="100"
+          d="M 125 170 C 110 150, 95 145, 80 148"
+          stroke="url(#introStemGradR)" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Leaves Growing Out From Root Towards Leaf Edge -->
+        <g class="vine-leaf vine-leaf-1" style="transform-origin: 25px 310px;">
+          <path d="M 25 310 C 15 295, 20 275, 40 280 C 50 295, 40 312, 25 310 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 25 310 Q 30 295 40 280" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-2" style="transform-origin: 160px 255px;">
+          <path d="M 160 255 C 180 250, 195 265, 190 285 C 170 290, 155 275, 160 255 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 160 255 Q 175 270 190 285" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-3" style="transform-origin: 80px 148px;">
+          <path d="M 80 148 C 65 130, 50 140, 48 160 C 62 170, 78 162, 80 148 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 80 148 Q 62 150 48 160" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <g class="vine-leaf vine-leaf-4" style="transform-origin: 165px 115px;">
+          <path d="M 165 115 C 190 105, 205 120, 198 135 C 175 140, 160 128, 165 115 Z" fill="url(#introLeafGradR)"/>
+          <path d="M 165 115 Q 185 122 198 135" stroke="#14532d" stroke-width="0.8" fill="none"/>
+        </g>
+
+        <!-- Blooming Royal Blue Rose at Crest of Vine -->
+        <g class="vine-rose-bloom" id="roseBloomRight" filter="url(#introRoseBloomFilterR)" style="transform-origin: 185px 85px;">
+          <path d="M 178 88 C 173 97, 168 103, 162 105 C 169 99, 175 93, 178 88 Z" fill="#15803d"/>
+          <path d="M 192 88 C 197 97, 202 103, 208 105 C 201 99, 195 93, 192 88 Z" fill="#15803d"/>
+          <path d="M 185 91 C 185 99, 184 105, 185 108 C 186 105, 186 99, 185 91 Z" fill="#16a34a"/>
+
+          <path class="rose-petal petal-back" d="M 162 55 C 158 35, 185 28, 185 28 C 185 28, 212 35, 208 55 C 208 72, 196 85, 185 90 C 174 85, 162 72, 162 55 Z" fill="url(#introRoseDarkR)"/>
+          <path class="rose-petal petal-side-left" d="M 156 50 C 148 64, 154 80, 168 89 C 174 84, 172 70, 168 58 C 165 52, 160 48, 156 50 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-glow-left" d="M 156 50 C 157 42, 166 38, 176 44 C 168 48, 163 56, 160 65 C 157 60, 156 54, 156 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-side-right" d="M 214 50 C 222 64, 216 80, 202 89 C 196 84, 198 70, 202 58 C 205 52, 210 48, 214 50 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-glow-right" d="M 214 50 C 213 42, 204 38, 194 44 C 202 48, 207 56, 210 65 C 213 60, 214 54, 214 50 Z" fill="url(#introRoseGlowR)" opacity="0.9"/>
+          <path class="rose-petal petal-front" d="M 160 58 C 160 76, 172 90, 185 92 C 198 90, 210 76, 210 58 C 200 66, 190 69, 185 69 C 180 69, 170 66, 160 58 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-core" d="M 174 46 C 174 38, 184 34, 186 34 C 193 34, 195 40, 193 47 C 191 52, 184 56, 180 56 C 175 56, 174 52, 174 46 Z" fill="url(#introRoseMainR)"/>
+          <path class="rose-petal petal-core-rim" d="M 178 42 C 181 37, 187 37, 189 39 C 189 42, 186 44, 184 44 C 181 44, 178 43, 178 42 Z" fill="url(#introRoseGlowR)"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Ultra-fine Liquid Scroll Progress Ribbon -->
+  <div class="scroll-liquid-progress" id="scrollProgressIndicator"></div>
+
+  <!-- Floating Sticky Navigation Bar (Translucent Liquid Glass Design) -->
+  <header class="navbar-wrapper">
+    <nav class="navbar-liquid-container">
+      
+      <!-- Left Brand Pill (Finexy-style in Reference) -->
+      <div class="nav-brand-pill">
+        <div class="brand-avatar-badge">
+          <span>✨</span>
+        </div>
+        <a href="#home" class="brand-link">Gini's Paradise</a>
+      </div>
+
+      <!-- Center Segmented Navigation Capsule (Overview/Activity style) -->
+      <div class="nav-segmented-track">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" data-target="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#casette" class="nav-link" data-target="casette">Jukebox 📻</a>
+          </li>
+          <li class="nav-item">
+            <a href="#bakery" class="nav-link" data-target="bakery">SugarCloud 🍰</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Action Islands (Search, Notification, Profile style) -->
+      <div class="nav-actions-island">
+        <button class="nav-icon-liquid-btn glow-sun" id="ambientLightBtn" title="Toggle Celestial Glow Ambient Light" aria-label="Toggle ambient lighting">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <circle cx="12" cy="12" r="5" fill="#D48B97" />
+            <g stroke="#D48B97" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <button class="nav-icon-liquid-btn" id="soundToggleBtn" title="Toggle Ambient Audio" aria-label="Toggle background audio">
+          <i data-lucide="headphones" class="icon-headphones"></i>
+          <span class="audio-wave-indicator" id="audioWave"></span>
+        </button>
+        <div class="nav-profile-pill" title="Birthday Edition For Shubhangini">
+          <div class="profile-avatar-circle">
+            <img src="Photos/clock1.jpg" alt="Gini" class="profile-avatar-img" onerror="this.onerror=null; this.parentElement.innerHTML='🌸';">
+          </div>
+          <span class="profile-name">Gini ♡</span>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       SECTION 1: HOME (LANDING HERO SECTION)
+       ============================================================ -->
+  <section id="home" class="hero-container">
+    <div class="hero-bg-wrapper">
+      <img src="Photos/Hero_image.png" alt="Best Friends Forever" class="hero-bg-img" id="heroBg">
+      <div class="hero-overlay"></div>
+      <canvas id="particlesCanvas"></canvas>
+    </div>
+
+    <!-- Hero Content (Anchored at the bottom-right corner) -->
+    <main class="hero-content">
+      <!-- Greeting Tag Just Above the Buttons -->
+      <div class="hero-greeting-tag">
+        <span>Happiest birthday my fav</span>
+        <span class="hero-fav-heart">💙</span>
+      </div>
+
+      <div class="hero-cta-group">
+        <!-- Button 1: Letter Button -->
+        <button class="btn btn-primary" id="btnMemories" title="Open Letter for Shubhangini">
+          <span class="btn-icon">💌</span>
+          <span>Letter</span>
+        </button>
+
+        <!-- Button 2: Edit Room button -->
+        <button class="btn btn-glass" id="btnSurpriseVideo" title="Watch Videos in Edit Room">
+          <span class="btn-icon">🎬</span>
+          <span>Edit Room</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Bottom Center Scroll Indicator -->
+    <div class="scroll-relive-container">
+      <a href="#clockFooter" class="scroll-relive-link" id="scrollDownBtn">
+        <span class="scroll-arrow">↓</span>
+        <span class="scroll-text">Scroll to our memory reel</span>
+        <span class="ambient-subtle-hearts">🎞️</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: MEMORY REEL & FEATURED PORTRAIT (SPLIT SHOWCASE)
+       ============================================================ -->
+  <section id="clockFooter" class="section-memory-reel">
+    <div class="reel-section-container">
+      
+      <!-- Section Title (Clean, Without Kicker) -->
+      <div class="reel-header text-center">
+        <h2 class="reel-main-title">My life would have been a lot less sweet without you</h2>
+      </div>
+
+      <!-- Split Showcase: Memory Reel on Left · Gini1 Featured Photo on Right -->
+      <div class="reel-showcase-split">
+        
+        <!-- Left Column: Memory Reel Carousel -->
+        <div class="reel-showcase-left">
+          <div class="memory-reel-stage" id="memoryReelStage">
+            
+            <!-- Left Navigation Arrow Button -->
+            <button class="reel-nav-btn btn-reel-prev" id="btnReelPrev" aria-label="Previous Photo" title="Previous photo">
+              <span class="nav-arrow">‹</span>
+            </button>
+
+            <!-- Carousel Viewport & Track -->
+            <div class="reel-track-viewport" id="reelTrackViewport">
+              <div class="reel-carousel-track" id="reelCarouselTrack">
+                
+                <div class="reel-slide" data-index="0" data-src="Photos/clock1.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock1.jpg" alt="Memory Moment 1" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+                <div class="reel-slide" data-index="1" data-src="Photos/clock2.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock2.jpg" alt="Memory Moment 2" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+                <div class="reel-slide" data-index="2" data-src="Photos/clock3.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock3.jpg" alt="Memory Moment 3" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+                <div class="reel-slide" data-index="3" data-src="Photos/clock4.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock4.jpg" alt="Memory Moment 4" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+                <div class="reel-slide" data-index="4" data-src="Photos/clock5.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock5.jpg" alt="Memory Moment 5" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+                <div class="reel-slide" data-index="5" data-src="Photos/clock6.jpg">
+                  <div class="reel-card">
+                    <img src="Photos/clock6.jpg" alt="Memory Moment 6" class="reel-img" loading="lazy">
+                    <div class="reel-card-glare"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right Navigation Arrow Button -->
+            <button class="reel-nav-btn btn-reel-next" id="btnReelNext" aria-label="Next Photo" title="Next photo">
+              <span class="nav-arrow">›</span>
+            </button>
+
+          </div>
+
+          <!-- Reel Controls Bar (Pill Indicators + Counter) -->
+          <div class="reel-controls-bar">
+            <div class="reel-indicators" id="reelIndicators">
+              <!-- Dynamically populated 6 pill dots -->
+            </div>
+            <div class="reel-counter-badge" id="reelCounterBadge">
+              <span id="reelCurrentIndex">01</span> / <span id="reelTotalCount">06</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Featured Portrait Photo (Gini1.jpeg) -->
+        <div class="reel-showcase-right">
+          <figure class="featured-portrait-card" onclick="window.previewPhoto('Photos/Gini1.jpeg')" title="Click to view full photo">
+            <div class="featured-portrait-frame">
+              <img src="Photos/Gini1.jpeg" alt="Shubhangini" class="featured-portrait-img" loading="lazy">
+              <div class="featured-portrait-glare"></div>
+            </div>
+            <figcaption class="featured-portrait-caption">
+              Gini ♡
+            </figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: SHAYARI & MOMENTS (3 ALTERNATING PHOTO & SHAYARI ROWS)
+       ============================================================ -->
+  <section id="shayariSection" class="section-shayari-memories">
+    <div class="shayari-container">
+
+      <!-- Section Header -->
+      <div class="shayari-header text-center">
+        <h2 class="shayari-main-title">Things I don't Say Enough ♡</h2>
+      </div>
+
+      <!-- Interactive Shayari Carousel Stage (Switchable One-by-One with Next / Prev) -->
+      <div class="shayari-slider-stage" id="shayariSliderStage">
+        
+        <!-- Left Side Floating Navigation Arrow -->
+        <button class="shayari-nav-btn btn-shayari-prev" id="btnShayariPrev" aria-label="Previous" title="Previous card">
+          <span class="nav-arrow">‹</span>
+        </button>
+
+        <!-- Carousel Track Viewport -->
+        <div class="shayari-track-viewport" id="shayariTrackViewport">
+          <div class="shayari-slider-track" id="shayariSliderTrack">
+
+            <!-- ==========================================
+                 CARD 1: Text Left · Photo Right
+                 ========================================== -->
+            <article class="shayari-story-row row-photo-right" data-card-index="0">
+              <!-- Text Column (Left) -->
+              <div class="shayari-text-col">
+                <div class="shayari-quote-bubble">
+                  <p class="shayari-verse highlight">“There is never a moment in which I do not adore you ♡”</p>
+                </div>
+              </div>
+
+              <!-- Photo Column (Right) -->
+              <div class="shayari-photo-col">
+                <!-- Photo 1: Gini2.jpeg -->
+                <figure class="polaroid-card polaroid-tilt-right" onclick="window.previewPhoto('Photos/Gini2.jpeg')" title="Click to view full photo">
+                  <div class="washi-tape tape-top-right"></div>
+                  <div class="polaroid-frame">
+                    <img src="Photos/Gini2.jpeg" alt="Gini Photo 2" class="polaroid-img" loading="lazy">
+                    <div class="polaroid-glare"></div>
+                  </div>
+                  <figcaption class="polaroid-caption">
+                    “The one who brings smiles to everything ♡”
+                  </figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <!-- ==========================================
+                 CARD 2: Photo Left · Text Right (Alternating)
+                 ========================================== -->
+            <article class="shayari-story-row row-photo-left" data-card-index="1">
+              <!-- Photo Column (Left) -->
+              <div class="shayari-photo-col">
+                <!-- Photo 2: Gini3.jpeg -->
+                <figure class="polaroid-card polaroid-tilt-left" onclick="window.previewPhoto('Photos/Gini3.jpeg')" title="Click to view full photo">
+                  <div class="washi-tape tape-top"></div>
+                  <div class="polaroid-frame">
+                    <img src="Photos/Gini3.jpeg" alt="Gini Photo 3" class="polaroid-img" loading="lazy">
+                    <div class="polaroid-glare"></div>
+                  </div>
+                  <figcaption class="polaroid-caption">
+                    “pretty face, prettier heart ✨”
+                  </figcaption>
+                </figure>
+              </div>
+
+              <!-- Text Column (Right) -->
+              <div class="shayari-text-col">
+                <div class="shayari-quote-bubble">
+                  <p class="shayari-verse highlight">“All the stars together could never outshine the sparkle in your eyes when you smile ✨”</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- ==========================================
+                 CARD 3: Text Left · Photo Right (Alternating)
+                 ========================================== -->
+            <article class="shayari-story-row row-photo-right" data-card-index="2">
+              <!-- Text Column (Left) -->
+              <div class="shayari-text-col">
+                <div class="shayari-quote-bubble">
+                  <p class="shayari-verse">“For me, you are</p>
+                  <p class="shayari-verse">As gentle as a rose,</p>
+                  <p class="shayari-verse">as delicate as a daisy,</p>
+                  <p class="shayari-verse">as warm as a sunflower,</p>
+                  <p class="shayari-verse highlight">and More beautiful than any flower ♡”</p>
+                </div>
+              </div>
+
+              <!-- Photo Column (Right) -->
+              <div class="shayari-photo-col">
+                <!-- Photo 3: Gini4.jpeg -->
+                <figure class="polaroid-card polaroid-tilt-right" onclick="window.previewPhoto('Photos/Gini4.jpeg')" title="Click to view full photo">
+                  <div class="washi-tape tape-top-right"></div>
+                  <div class="polaroid-frame">
+                    <img src="Photos/Gini4.jpeg" alt="Gini Photo 4" class="polaroid-img" loading="lazy">
+                    <div class="polaroid-glare"></div>
+                  </div>
+                  <figcaption class="polaroid-caption">
+                    “proof that the universe has its favourites 🧿”
+                  </figcaption>
+                </figure>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Right Side Floating Navigation Arrow -->
+        <button class="shayari-nav-btn btn-shayari-next" id="btnShayariNext" aria-label="Next" title="Next card">
+          <span class="nav-arrow">›</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: OUTRO CINEMATIC VIDEO (COMPLETE WIDTH & MINIMAL CLEAN BORDERS)
+       ============================================================ -->
+  <footer id="outroVideoSection" class="section-outro-video">
+    <div class="outro-video-container">
+      
+      <!-- Minimal Clean Section Header -->
+      <div class="outro-header text-center">
+        <span class="outro-kicker-pill">Outro Special 🎬</span>
+        <h2 class="outro-main-title">Birthdayyyy Gurlll</h2>
+      </div>
+
+      <!-- Outro Video Frame with Complete Width & Minimal Clean Borders -->
+      <div class="outro-video-card" id="outroVideoCard">
+        <video class="outro-video-player" id="outroVideoPlayer" playsinline webkit-playsinline="true" preload="auto" loop muted disablePictureInPicture>
+          <source src="outro-video.mp4" type="video/mp4">
+          <source src="outro%20video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Controls Cluster: Minimal Sound Toggle Pill & Maximise Button -->
+        <div class="outro-video-controls" id="outroVideoControls">
+          <button class="outro-sound-badge" id="outroSoundBadge" aria-label="Toggle Sound" title="Click to mute / unmute">
+            <span id="outroSoundIcon">🔊</span>
+            <span id="outroSoundLabel">Sound On</span>
+          </button>
+          <button class="outro-fullscreen-btn" id="outroFullscreenBtn" type="button" aria-label="Maximize Video" title="Maximize Video">
+            <svg class="vdo-fs-icon-expand" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
+            <svg class="vdo-fs-icon-compress" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Tap Play/Pause Indicator -->
+        <div class="outro-play-indicator" id="outroPlayIndicator">▶</div>
+      </div>
+
+      <!-- Footer Bottom Bar (Underneath Outro Video) -->
+      <div class="clock-footer-bottom">
+        <p class="footer-quote">
+          Whenever life feels to heavy , I hope you remember you've got me in your corner<br>
+          <span class="footer-quote-sub">Always 💙</span>
+        </p>
+        <a href="#home" class="btn-back-to-top">
+          <span>↑ Back to top</span>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       PURE IMAGE LIGHTBOX MODAL (SHOW ONLY IMAGE AND NOTHING ELSE)
+       ============================================================ -->
+  <div class="modal-overlay image-lightbox-overlay" id="imageLightboxModal" aria-hidden="true">
+    <div class="pure-lightbox-card">
+      <button class="btn-back-home modal-close-btn lightbox-close" id="closeLightboxModal" aria-label="Back to Home">
+        <span>← Back to Home</span>
+      </button>
+      <img src="" alt="Memory Photo" id="lightboxImg" class="pure-lightbox-img">
+    </div>
+  </div>
+
+  <!-- ============================================================
+       INTERACTIVE MODALS
+       ============================================================ -->
+  <!-- Interactive Modal: See Our Memories -->
+  <div class="modal-overlay" id="memoriesModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="btn-back-home modal-close-btn" id="closeMemoriesModal" aria-label="Back to Home">
+        <span>← Back to Home</span>
+      </button>
+      <div class="modal-header">
+        <span class="modal-tag">CHRONICLES OF US</span>
+        <h2 class="modal-title">Our Unforgettable Memories ♡</h2>
+        <p class="modal-desc">A snapshot of the smiles, adventures, and quiet joys we've shared together.</p>
+      </div>
+      <div class="memories-grid">
+        <div class="memory-card">
+          <div class="memory-img-box">
+            <img src="Photos/Hero_image.png" alt="Our Favorite Days" class="memory-thumbnail">
+            <span class="memory-badge">The Smile That Started It All</span>
+          </div>
+          <div class="memory-info">
+            <h3>Theater Smiles & Late Night Chills</h3>
+            <p>Sitting side by side, sharing jokes that only the two of us understand, smiling so big our cheeks hurt.</p>
+            <span class="memory-date">A memory etched forever in my heart</span>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="memory-img-box quote-box">
+            <div class="quote-content">
+              <span class="quote-marks">“</span>
+              <p>In a world full of temporary things, you are a perpetual feeling of home.</p>
+              <span class="quote-author">— Best Friends Forever ♡</span>
+            </div>
+          </div>
+          <div class="memory-info">
+            <h3>Infinite Inside Jokes</h3>
+            <p>From the random 2 AM phone calls to spontaneous laughter over nothing — every single second counts.</p>
+            <span class="memory-date">Timeless & Unconditional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modal: Surprise Video 🎬 (Enlarged Edit Room Carousel) -->
+  <div class="modal-overlay" id="surpriseVideoModal" aria-hidden="true">
+    <div class="modal-card surprise-video-card editroom-theatre-card">
+      
+      <!-- Edit Room Header: Title, Kicker & Back to Home button -->
+      <div class="editroom-top-header">
+        <div class="editroom-header-meta">
+          <span class="editroom-kicker-pill">🎬 EDIT ROOM</span>
+          <h2 class="editroom-main-title">Memories in Motion ♡</h2>
+        </div>
+        <button class="btn-back-home modal-close-btn" id="closeSurpriseVideoModal" aria-label="Back to Home">
+          <span>← Back to Home</span>
+        </button>
+      </div>
+
+      <!-- Edit Room Stage: Previous Arrow, Active Video Theatre Viewport, Next Arrow -->
+      <div class="editroom-stage-wrapper">
+        <!-- Previous Video Arrow Button (Matching sweet section .reel-nav-btn) -->
+        <button class="reel-nav-btn editroom-nav-btn btn-vdo-prev" id="btnVdoPrev" type="button" aria-label="Previous Video" title="Previous video">
+          <span class="nav-arrow">‹</span>
+        </button>
+
+        <!-- Theatre Viewport for Active Slide -->
+        <div class="editroom-viewport" id="editroomViewport">
+          <div class="editroom-track" id="editroomTrack">
+
+            <!-- Video 1 (Landscape) -->
+            <div class="editroom-slide is-active" data-vdo-index="0">
+              <div class="editroom-vdo-frame surprise-vdo-wrapper vdo-landscape">
+                <video class="surprise-vdo-element" src="Photos/Surprise_Vdo/vdo1.mp4" controls playsinline webkit-playsinline="true" loop preload="metadata" data-index="1"></video>
+                <button class="vdo-fullscreen-btn" type="button" aria-label="Maximize Video 1" title="Maximize Video">
+                  <svg class="vdo-fs-icon-expand" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                  <svg class="vdo-fs-icon-compress" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Video 2 (Portrait) -->
+            <div class="editroom-slide" data-vdo-index="1">
+              <div class="editroom-vdo-frame surprise-vdo-wrapper vdo-portrait">
+                <video class="surprise-vdo-element" src="Photos/Surprise_Vdo/vdo2.mp4" controls playsinline webkit-playsinline="true" loop preload="metadata" data-index="2"></video>
+                <button class="vdo-fullscreen-btn" type="button" aria-label="Maximize Video 2" title="Maximize Video">
+                  <svg class="vdo-fs-icon-expand" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                  <svg class="vdo-fs-icon-compress" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Video 3 (Portrait) -->
+            <div class="editroom-slide" data-vdo-index="2">
+              <div class="editroom-vdo-frame surprise-vdo-wrapper vdo-portrait">
+                <video class="surprise-vdo-element" src="Photos/Surprise_Vdo/vdo3.mp4" controls playsinline webkit-playsinline="true" loop preload="metadata" data-index="3"></video>
+                <button class="vdo-fullscreen-btn" type="button" aria-label="Maximize Video 3" title="Maximize Video">
+                  <svg class="vdo-fs-icon-expand" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                  <svg class="vdo-fs-icon-compress" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Next Video Arrow Button (Matching sweet section .reel-nav-btn) -->
+        <button class="reel-nav-btn editroom-nav-btn btn-vdo-next" id="btnVdoNext" type="button" aria-label="Next Video" title="Next video">
+          <span class="nav-arrow">›</span>
+        </button>
+      </div>
+
+      <!-- Bottom Controls Bar (Matching sweet section .reel-controls-bar + Next Video button) -->
+      <div class="reel-controls-bar editroom-controls-bar">
+        <div class="reel-indicators editroom-indicators" id="vdoIndicators">
+          <button class="reel-dot is-active" type="button" aria-label="Video 1"></button>
+          <button class="reel-dot" type="button" aria-label="Video 2"></button>
+          <button class="reel-dot" type="button" aria-label="Video 3"></button>
+        </div>
+        <div class="reel-counter-badge editroom-counter-badge" id="vdoCounterBadge">
+          <span id="vdoCurrentIndex">01</span> / <span id="vdoTotalCount">03</span>
+        </div>
+        <button class="btn-next-video-pill" id="btnNextVideoPill" type="button" title="Scroll to Next Video">
+          <span>Next Video →</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Interactive Modal: Special Surprise -->
+  <div class="modal-overlay" id="specialModal" aria-hidden="true">
+    <div class="modal-card special-card">
+      <button class="btn-back-home modal-close-btn" id="closeSpecialModal" aria-label="Back to Home">
+        <span>← Back to Home</span>
+      </button>
+      <div class="special-icon-animation">
+        <span class="floating-big-heart">💙</span>
+      </div>
+      <div class="modal-header text-center">
+        <span class="modal-tag pulse-tag">SPECIAL FOR YOU</span>
+        <h2 class="modal-title">Happy Birthday, Gini! 🎉🎂</h2>
+        <p class="modal-desc">You deserve all the happiness, warmth, and love in the entire universe.</p>
+      </div>
+      <div class="special-body">
+        <div class="birthday-wish-box">
+          <p class="handwritten-wish">
+            "May your year ahead be as radiant, kind, and beautiful as your soul. Here's to more laughs, more dreams chased together, and an unbreakable bond that only grows sweeter with time!"
+          </p>
+          <div class="signature">With all my love & heartfelt wishes ♡</div>
+        </div>
+        <button class="btn btn-primary btn-sparkle-celebrate" id="btnTriggerConfetti">
+          <span>Celebrate Again ✨</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Modal: General Nav (Casette, Sweet tooth, Gallery, Personal Diary) -->
+  <div class="modal-overlay" id="generalNavModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="btn-back-home modal-close-btn" id="closeNavModal" aria-label="Back to Home">
+        <span>← Back to Home</span>
+      </button>
+      <div class="modal-header">
+        <span class="modal-tag" id="navModalTag">EXPLORE</span>
+        <h2 class="modal-title" id="navModalTitle">Section Title</h2>
+        <p class="modal-desc" id="navModalDesc">Description goes here</p>
+      </div>
+      <div class="nav-modal-body" id="navModalBody">
+        <!-- Dynamic content filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR MODAL 0: BDAY LETTER 💌 (A SINGLE PERSONAL LETTER FOR SHUBHANGINI)
+       ============================================================ -->
+  <div class="modal-overlay nav-feature-modal letter-modal-overlay" id="letterModal" aria-hidden="true">
+    <div class="modal-card nav-feature-card letter-feature-card">
+      <!-- Fullview Sticky Top Header Bar -->
+      <div class="fullview-top-bar">
+        <div class="fullview-brand-pill">
+          <span class="fullview-sparkle">✨</span>
+          <span class="fullview-brand-title">The Gini Paradise</span>
+          <span class="fullview-badge-pill">Letter 💌</span>
+        </div>
+        <div class="fullview-actions">
+          <button class="btn-fullview-action" onclick="window.closeAllFeatureViews()">
+            <span>← Back to Home</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="letters" class="letter-modal-inner">
+        <canvas id="lettersParticlesCanvas" class="letters-ambient-canvas"></canvas>
+        
+        <!-- Ambient Radial Light Blooms -->
+        <div class="letters-ambient-glow glow-top"></div>
+        <div class="letters-ambient-glow glow-bottom"></div>
+
+        <div class="letters-container">
+
+          <!-- STAGE 1: 3D SEALED ENVELOPE STAGE -->
+          <div class="single-letter-envelope-stage" id="singleLetterEnvelopeStage">
+            
+            <!-- Header Typography (Left-Aligned) -->
+            <div class="envelope-stage-header text-left">
+              <span class="letter-pre-badge">💌 A LITTLE SOMETHING FOR YOU</span>
+              <h2 class="letter-hero-title">For Shubhangini, with love.</h2>
+            </div>
+
+            <!-- 3D Realistic Envelope Assembly -->
+            <div class="envelope-3d-scene">
+              <div class="envelope-3d-wrapper" id="envelope3DWrapper" title="Click to open the letter for Shubhangini">
+                
+                <!-- Envelope Back Wall & Interior Powder-Blue Satin Lining -->
+                <div class="envelope-back-wall">
+                  <div class="envelope-inner-lining">
+                    <div class="lining-pattern"></div>
+                  </div>
+                </div>
+
+                <!-- Cream Letter Sheet Inside (Peeks & slides out during opening animation) -->
+                <div class="envelope-sliding-sheet" id="envelopeSlidingSheet">
+                  <div class="sheet-postal-mark">✦ SPECIAL AIRMAIL · GINI ✦</div>
+                  <div class="sheet-mini-lines">
+                    <span class="line"></span>
+                    <span class="line short"></span>
+                    <span class="line"></span>
+                  </div>
+                  <div class="sheet-seal-symbol">🌹</div>
+                </div>
+
+                <!-- Envelope Back Lower Body (Authentic Folded Seams & Calligraphy) -->
+                <div class="envelope-back-pocket">
+                  <div class="envelope-seam-bottom"></div>
+                  <div class="envelope-seam-left"></div>
+                  <div class="envelope-seam-right"></div>
+                  
+                  <!-- Elegant Calligraphy at the Bottom -->
+                  <div class="envelope-calligraphy-mark">
+                    <span class="calligraphy-for">Just for</span>
+                    <h3 class="calligraphy-name">Shubhangini ♡</h3>
+                    <span class="calligraphy-sub">With all my love · Abhishek</span>
+                  </div>
+                </div>
+
+                <!-- Envelope 3D Foldable Flap with Wax Seal -->
+                <div class="envelope-3d-flap" id="envelope3DFlap">
+                  <div class="flap-outer-tri"></div>
+                  <div class="flap-inner-tri"></div>
+
+                  <!-- Wax Seal Button Centered on Flap Tip -->
+                  <div class="envelope-wax-seal" id="envelopeWaxSeal" title="Break the seal and open letter">
+                    <div class="seal-glow-ring"></div>
+                    <div class="seal-wax-disc">
+                      <span class="seal-emblem">🌹</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Skip Option -->
+            <div class="envelope-action-bar text-center">
+              <div>
+                <button class="btn-skip-envelope-action" id="btnSkipEnvelopeAction" type="button">
+                  Skip animation & read directly →
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- STAGE 3: FOREVER US CINEMATIC READING VIEW -->
+          <div class="single-letter-reading-view" id="singleLetterReadingView" style="display: none;">
+            
+            <article class="reading-card-forever-us">
+              
+              <!-- Editorial Header (Left-Aligned) -->
+              <header class="reading-letter-header text-left">
+                <h1 class="reading-letter-title">A Little Something for You</h1>
+              </header>
+
+              <!-- Romantic Song Player Pill (Optional listening) -->
+              <div class="reading-song-card" id="letterSongCard">
+                <div class="song-disc-vinyl" id="letterSongVinyl">
+                  <img src="Photos/music/yellow_coldplay.jpg" alt="Yellow - Coldplay" class="song-disc-img">
+                  <span class="vinyl-center-dot"></span>
+                </div>
+                <div class="song-details">
+                  <span class="song-kicker">A SONG FOR THIS LETTER</span>
+                  <div class="song-title-row">
+                    <strong class="song-name" id="letterSongTitle">Yellow</strong>
+                    <span class="song-bullet">·</span>
+                    <span class="song-artist" id="letterSongArtist">Coldplay</span>
+                  </div>
+                </div>
+                <div class="song-wave-visualizer" id="letterSongVisualizer" aria-hidden="true">
+                  <span class="wave-bar bar-1"></span>
+                  <span class="wave-bar bar-2"></span>
+                  <span class="wave-bar bar-3"></span>
+                  <span class="wave-bar bar-4"></span>
+                  <span class="wave-bar bar-5"></span>
+                </div>
+                <button class="btn-song-action" id="btnToggleLetterSong" title="Listen to this letter's soundtrack" aria-label="Play song">
+                  <span id="letterSongPlayIcon">▶</span>
+                  <span id="letterSongPlayText">Play Melody</span>
+                </button>
+              </div>
+
+              <!-- The Personal Letter Content Body (Artisanal Polaroid Scrapbook Sections) -->
+              <div class="reading-letter-body" id="readingLetterBody">
+                
+                <div class="letter-salutation">Happiest Birthdayyy, Dear Shubhanginiii ♡</div>
+
+                <!-- Section 1: Memory & Special Bond (First Photo Left, Right Side Text) -->
+                <section class="letter-story-section section-photo-left">
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-left" onclick="window.previewPhoto('Photos/letter2.jpeg')" title="Click to view full photo">
+                      <div class="washi-tape tape-top"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter2.jpeg" alt="Abhishek and Shubhangini smiling together on a bus ride" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “Silly conversations, unhurried journeys, and laughter that made ordinary days unforgettable. ♡”
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="section-text-col">
+                    <p class="letter-p letter-lead">
+                      You’re so much more special to me than you’ll ever understand. I could probably write pages and pages about what you mean to me and still find a hundred more things to say.
+                    </p>
+                    <p class="letter-p">
+                      You’ve become such an important part of my life that I honestly can’t imagine my days without you in them. Thank you for always understanding me, for staying, and for making me feel safe and happy in ways you probably don’t even realise. I’m genuinely so grateful to have you in my life.
+                    </p>
+                  </div>
+                </section>
+
+                <!-- Section 2: Birthday Wishes & Dreams (Text Left, Second Photo Right) -->
+                <section class="letter-story-section section-photo-right">
+                  <div class="section-text-col">
+                    <p class="letter-p">
+                      I know there are a thousand ways to wish someone a birthday, but I wanted to wish you a little differently. So, I hope life always gives you the window seat, the extra fries, all your favourite KFC chicken and sweets from every corner of the world.
+                    </p>
+                    <p class="letter-p">
+                      Green traffic lights when you’re running late, a playlist that knows your mood, friends who start laughing before you even finish the joke, random flowers, your dream job, a full bank account, and your favourite food waiting for you after the longest day. And whenever the world feels a little unkind, I hope someone is there to make it feel a little better. May you always have enough reasons to say, “That was a good day.” And I hope you get everything you never knew how to ask for.
+                    </p>
+                  </div>
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-right polaroid-portrait" onclick="window.previewPhoto('Photos/letter1.jpeg?v=2')" title="Click to view full photo">
+                      <div class="washi-tape tape-top-right"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter1.jpeg?v=2" alt="Abhishek and Shubhangini walking side by side towards the temple" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “To walking side by side, visiting a hundred more places, and choosing these adventures with you every single time. 🌿”
+                      </figcaption>
+                    </figure>
+                  </div>
+                </section>
+
+                <!-- Section 3: A Part of Me Forever (Third Photo Left, Right Side Text) -->
+                <section class="letter-story-section section-photo-left">
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-left" onclick="window.previewPhoto('Photos/letter3.jpeg')" title="Click to view full photo">
+                      <div class="washi-tape tape-top"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter3.jpeg" alt="Abhishek and Shubhangini smiling together in the hall" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “Every quiet smile, every shared glance, and all the moments that feel like home with you. ♡”
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="section-text-col">
+                    <p class="letter-p">
+                      Some people come into your life and become memories, but then there are people who become a part of you. You’re one of those people for me. No matter where life takes us, I hope we always find our way back to each other.
+                    </p>
+                    <p class="letter-p">
+                      And more than anything, I hope life lets us stay a part of each other’s stories for a long, long time, through all the changes, all the different versions of ourselves, and all the years still waiting for us. I hope you never forget that you’ll never be just another person to me. You’ll always be someone incredibly special, someone I could never replace, and someone I’ll always be thankful to have in my life. I hope you know how deeply you’re respected, valued, cherished, and loved by me.
+                    </p>
+                  </div>
+                </section>
+
+                <!-- Section 4: The Climax, Celebration & Handwritten Sign-off -->
+                <section class="letter-story-section section-climax">
+                  <p class="letter-p letter-lead" style="margin-bottom: 1.5rem;">
+                    Once again, the happiest birthday to you, Shubhanginiii! I hope this year brings you more happiness than you can imagine and gives you countless little moments that make life feel beautiful. You deserve all the good things this world has to offer, and I really hope you get to experience them all.
+                  </p>
+
+                  <div class="letter-quote-callout">
+                    <div class="quote-sparkle-decor">✧</div>
+                    <p class="quote-text">“For you, a thousand times over. ♡”</p>
+                    <div class="quote-sparkle-decor">✧</div>
+                  </div>
+
+                  <p class="letter-p letter-sweet-close">
+                    Life’s a lot sweeter with you in it.
+                  </p>
+
+                  <div class="letter-handwritten-closing">
+                    <div class="closing-phrase">With lots of love,</div>
+                    <div class="closing-author-signature">Abhishek <img src="Photos/blue-rose.svg" alt="Blue Rose" class="blue-rose-img" title="Blue Rose for Gini 💙"></div>
+                  </div>
+                </section>
+
+              </div>
+
+              <!-- Letter Card Footer Actions: Replay Envelope Animation -->
+              <footer class="reading-card-footer">
+                <button class="btn-replay-envelope" id="btnReplayEnvelope" title="Replay the 3D envelope opening animation">
+                  <span class="replay-icon">↺</span>
+                  <span>Replay Envelope Opening</span>
+                </button>
+              </footer>
+
+            </article>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR MODAL 1: OUR JUKEBOX ♡ (INTERACTIVE CASSETTE MUSIC PLAYER)
+       ============================================================ -->
+  <div class="modal-overlay nav-feature-modal casette-modal-overlay" id="casetteModal" aria-hidden="true">
+    <div class="modal-card nav-feature-card casette-feature-card">
+      <!-- Fullview Sticky Top Header Bar -->
+      <div class="fullview-top-bar">
+        <div class="fullview-brand-pill">
+          <span class="fullview-sparkle">✨</span>
+          <span class="fullview-brand-title">The Gini Paradise</span>
+          <span class="fullview-badge-pill">Nostalgic Mixtape 📼</span>
+        </div>
+        <div class="fullview-actions">
+          <button class="btn-fullview-action" onclick="window.closeAllFeatureViews()">
+            <span>← Back to Home</span>
+          </button>
+          <button class="btn-fullview-action" onclick="window.closeAllFeatureViews(); setTimeout(() => openModal(document.getElementById('letterModal')), 120);">
+            <span>Letter 💌</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="casette" class="casette-modal-inner">
+        <div class="casette-fullview-container">
+          <!-- Minimal Poetic Header -->
+          <div class="minimal-playlist-header">
+            <p class="minimal-playlist-phrase">“for whenever words aren't quite enough”</p>
+          </div>
+
+          <!-- Jukebox Random Music Selector Banner -->
+          <div class="jukebox-roulette-banner" id="jukeboxRouletteBanner" style="display: none;">
+            <div class="roulette-indicator-pill" id="rouletteIndicatorPill">
+              <span class="roulette-dice-icon" id="rouletteDiceIcon">🎲</span>
+              <span class="roulette-status-text" id="rouletteStatusText">Spinning Jukebox for Gini...</span>
+            </div>
+          </div>
+
+          <!-- 1. Mixtape Complete Tracklist Section (Large Spotify Cards Grid) -->
+          <div class="mixtape-tracklist-section">
+            <div class="mixtape-tracklist-grid" id="mixtapeTracklistGrid">
+              <!-- Dynamically populated via JS with Spotify touch, Play/Stop & Next buttons -->
+            </div>
+          </div>
+
+          <!-- 2. CASSETTE PLAYBACK OVERLAY (APPEARS AS A FLOATING LIGHTBOX MODAL WHEN ANY SONG IS PLAYED) -->
+          <div class="casette-playback-overlay" id="casettePlaybackOverlay" style="display: none;" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="casette-overlay-scroller">
+              <div class="casette-overlay-dialog">
+                
+                <!-- Overlay Header Bar with Active Track Indicator -->
+                <div class="casette-overlay-topbar">
+                  <div class="overlay-track-indicator">
+                    <span class="live-dot-pulse"></span>
+                    <span class="overlay-tag-prefix">NOW PLAYING ON TAPE:</span>
+                    <strong class="overlay-track-label" id="casetteOverlayHeaderTitle">Jab Tak • Armaan Malik</strong>
+                  </div>
+                </div>
+
+                <!-- Cassette Player Deck Wrapper -->
+                <div class="casette-stage-wrapper" id="casetteStageWrapper">
+                  <div class="casette-canvas-box" id="casetteStage">
+                    <!-- Floating Quick Close Button on Cassette Deck Corner -->
+                    <button class="casette-deck-floating-close" onclick="window.closeCasettePlayerAndStop()" title="Close Cassette & Stop Music" aria-label="Close cassette player and stop music">
+                      <span class="close-x-icon">✕</span>
+                    </button>
+
+                    <!-- Base Artwork Image -->
+                    <img src="Photos/casette.png" alt="Our Jukebox" class="casette-base-img" id="casetteBaseImg">
+
+                    <!-- 1. Left Rotating Reel Window (Supply Spindle) -->
+                    <div class="casette-reel-spindle reel-left" id="casetteReelLeft" title="Supply Reel">
+                      <img src="Photos/reel_left.png" alt="Left Cassette Reel" class="reel-spin-img" id="reelLeftImg">
+                    </div>
+
+                    <!-- 2. Right Rotating Reel Window (Take-up Spindle) -->
+                    <div class="casette-reel-spindle reel-right" id="casetteReelRight" title="Take-up Reel">
+                      <img src="Photos/reel_right.png" alt="Right Cassette Reel" class="reel-spin-img" id="reelRightImg">
+                    </div>
+
+                    <!-- Live Cassette Tape Song Title Sticker (Displays Music on the Cassette) -->
+                    <div class="casette-tape-sticker" id="casetteTapeSticker">
+                      <div class="tape-sticker-inner">
+                        <span class="tape-sound-pulse" aria-hidden="true">
+                          <span class="pulse-bar b1"></span>
+                          <span class="pulse-bar b2"></span>
+                          <span class="pulse-bar b3"></span>
+                        </span>
+                        <span class="tape-sticker-prefix">NOW PLAYING:</span>
+                        <strong class="tape-sticker-title" id="casetteTapeStickerTitle">Jab Tak</strong>
+                        <span class="tape-sticker-sep">•</span>
+                        <span class="tape-sticker-artist" id="casetteTapeStickerArtist">Armaan Malik</span>
+                      </div>
+                    </div>
+
+                    <!-- 3. Real HTML Playback Controls & Info Container (Seamlessly Overlaid) -->
+                    <div class="casette-controls-overlay">
+                      <!-- Top Song Header: Title, Artist & Heart Toggle -->
+                      <div class="casette-song-row">
+                        <div class="casette-song-meta">
+                          <h3 class="casette-song-title" id="casetteSongTitle">Jab Tak</h3>
+                          <p class="casette-song-artist" id="casetteSongArtist">Armaan Malik</p>
+                        </div>
+                        <button class="casette-btn-heart" id="casetteHeartBtn" aria-label="Favourite this song" title="Favourite song">
+                          <span class="heart-icon-casette" id="casetteHeartIcon">♡</span>
+                        </button>
+                      </div>
+
+                      <!-- Progress Bar & Time Timestamps -->
+                      <div class="casette-progress-row">
+                        <div class="casette-slider-track">
+                          <input type="range" class="casette-slider" id="casetteProgressSlider" min="0" max="100" value="0" step="0.1" aria-label="Song progress">
+                          <div class="casette-slider-fill" id="casetteSliderFill"></div>
+                        </div>
+                        <div class="casette-time-labels">
+                          <span class="casette-time" id="casetteTimeElapsed">0:00</span>
+                          <span class="casette-time" id="casetteTimeTotal">5:18</span>
+                        </div>
+                      </div>
+
+                      <!-- Real Playback Action Buttons Row -->
+                      <div class="casette-actions-row">
+                        <button class="casette-action-btn btn-shuffle" id="casetteShuffleBtn" title="Shuffle Jukebox" aria-label="Shuffle jukebox">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 3 21 3 21 8"></polyline>
+                            <line x1="4" y1="20" x2="21" y2="3"></line>
+                            <polyline points="21 16 21 21 16 21"></polyline>
+                            <line x1="15" y1="15" x2="21" y2="21"></line>
+                            <line x1="4" y1="4" x2="9" y2="9"></line>
+                          </svg>
+                        </button>
+
+                        <button class="casette-action-btn btn-prev" id="casettePrevBtn" title="Previous Track" aria-label="Previous track">
+                          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                            <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                            <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+                          </svg>
+                        </button>
+
+                        <!-- Prominent Circular Play/Stop Button Matching Artwork -->
+                        <button class="casette-play-circle" id="casettePlayBtn" title="Play / Stop" aria-label="Play or stop track">
+                          <span class="casette-play-icon" id="casettePlayIcon">▶</span>
+                        </button>
+
+                        <button class="casette-action-btn btn-next" id="casetteNextBtn" title="Next Track" aria-label="Next track">
+                          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                            <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+                          </svg>
+                        </button>
+
+                        <button class="casette-action-btn btn-loop" id="casetteLoopBtn" title="Repeat Track" aria-label="Repeat track">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 1 21 5 17 9"></polyline>
+                            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                            <polyline points="7 23 3 19 7 15"></polyline>
+                            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                          </svg>
+                        </button>
+                      </div>
+
+                      <!-- Track Pagination Dots -->
+                      <div class="casette-dots-row" id="casetteTrackDots">
+                        <!-- Dynamically populated with dots -->
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR MODAL 2: GINI'S SUGARCLOUD 🍰 (AN INTERACTIVE VIRTUAL BAKERY)
+       ============================================================ -->
+  <div class="modal-overlay nav-feature-modal bakery-modal-overlay" id="bakeryModal" aria-hidden="true">
+    <div class="modal-card nav-feature-card bakery-feature-card">
+      <!-- Fullview Sticky Top Header Bar -->
+      <div class="fullview-top-bar">
+        <div class="fullview-brand-pill">
+          <span class="fullview-sparkle">✨</span>
+          <span class="fullview-brand-title">The Gini Paradise</span>
+          <span class="fullview-badge-pill">Boutique Patisserie 🍰</span>
+        </div>
+        <div class="fullview-actions">
+          <button class="btn-fullview-action" onclick="window.closeAllFeatureViews()">
+            <span>← Back to Home</span>
+          </button>
+          <button class="btn-fullview-action" onclick="window.closeAllFeatureViews(); setTimeout(() => openModal(document.getElementById('letterModal')), 120);">
+            <span>Letter 💌</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="bakery" class="bakery-modal-inner">
+        <!-- Atmospheric Bakery Glow & Floating Accents -->
+        <div class="bakery-ambient-backdrop">
+          <div class="bakery-light-orb orb-1"></div>
+          <div class="bakery-light-orb orb-2"></div>
+          <div class="bakery-pattern-grid"></div>
+        </div>
+
+        <div class="bakery-fullview-container">
+          <div class="bakery-container">
+            <!-- THE BAKERY COUNTER & SHOWCASE -->
+            <div class="bakery-counter-wrapper" id="bakeryCounter">
+            
+            <!-- Parisian Boutique Canopy / Awning -->
+            <div class="bakery-canopy">
+              <div class="canopy-scallops"></div>
+              <div class="canopy-sign">
+                <div class="sign-filigree-left">❦</div>
+                <div class="sign-content">
+                  <span class="sign-sub">ARTISANAL SWEET CREATIONS</span>
+                  <h3 class="sign-main">Gini's SugarCloud</h3>
+                  <span class="sign-dedication">Freshly Baked with Love for Shubhangini ♡</span>
+                </div>
+                <div class="sign-filigree-right">❦</div>
+              </div>
+              <div class="canopy-lights">
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+              </div>
+            </div>
+
+            <!-- Counter Atmosphere & Scrapbook Notes -->
+            <div class="counter-atmosphere-row">
+              <div class="scrapbook-card note-card-1">
+                <span class="pin-icon">📌</span>
+                <p class="note-text">“Good things inside. ♡”</p>
+                <span class="note-author">— Always for you</span>
+              </div>
+
+              <!-- Central Sticky Basket Pill & Quick Access -->
+              <div class="counter-center-hud">
+                <button class="cart-floating-trigger" id="btnOpenCart" aria-label="Open Gini's Dessert Basket">
+                  <span class="cart-trigger-icon">🧺</span>
+                  <span class="cart-trigger-label">Gini's Basket</span>
+                  <span class="cart-trigger-badge" id="cartBadgeCount">0</span>
+                </button>
+              </div>
+
+              <div class="scrapbook-card note-card-2">
+                <span class="pin-icon">📌</span>
+                <p class="note-text">“A little sweetness for my favourite human. 🌸 ♡”</p>
+                <span class="note-author">— Baked with love</span>
+              </div>
+            </div>
+
+            <!-- Menu Category Filter Tabs -->
+            <div class="bakery-menu-controls">
+              <div class="menu-tabs-bar" id="bakeryCategoryTabs" role="tablist">
+                <button class="menu-tab-btn active" data-category="all" role="tab" aria-selected="true">
+                  <span>All Sweet Treats (15)</span>
+                </button>
+                <button class="menu-tab-btn" data-category="pastries" role="tab" aria-selected="false">
+                  <span>Artisanal Pastries 🥐</span>
+                </button>
+                <button class="menu-tab-btn" data-category="mithai" role="tab" aria-selected="false">
+                  <span>Royal Mithai 🍯</span>
+                </button>
+                <button class="menu-tab-btn" data-category="chill" role="tab" aria-selected="false">
+                  <span>Chill & Scoops 🍨</span>
+                </button>
+                <button class="menu-tab-btn" data-category="surprise" role="tab" aria-selected="false">
+                  <span>Special Surprises 🎁</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Glass Pastry Display Showcase (The Main Counter Shelf) -->
+            <div class="glass-pastry-counter">
+              <!-- Shelf Lighting Glow -->
+              <div class="glass-shelf-light"></div>
+              
+              <!-- Glass Showcase Grid (15 Products Rendered with Full Interactivity) -->
+              <div class="pastry-display-grid" id="pastryDisplayGrid">
+                <!-- Dynamically populated and maintained with instant interactivity -->
+              </div>
+
+              <!-- Glass Shelf Reflections -->
+              <div class="counter-glass-reflection"></div>
+              
+              <!-- Counter Marble Trim Base -->
+              <div class="counter-marble-apron">
+                <div class="marble-brass-trim"></div>
+                <div class="counter-footer-meta">
+                  <span class="counter-status-pill">
+                    <span class="status-pulse-dot"></span>
+                    SugarCloud Open & Freshly Stocked ♡
+                  </span>
+                  <button class="btn-desk-discreet" id="btnOpenBakeryDesk" title="Discreet SugarCloud Desk - View & Manage Orders">
+                    <span>📋 SugarCloud Desk</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div> <!-- /.bakery-fullview-container -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY MODAL: PRODUCT CUSTOMIZATION & DETAILS
+       ============================================================ -->
+  <div class="modal-overlay bakery-modal-overlay" id="bakeryProductModal" aria-hidden="true">
+    <div class="modal-card bakery-product-card">
+      <button class="btn-back-home modal-close-btn" id="closeBakeryProductModal" aria-label="Back to Bakery">
+        <span>← Back to Bakery</span>
+      </button>
+      <div class="product-modal-grid">
+        <div class="product-modal-hero">
+          <div class="product-modal-img-wrapper">
+            <img src="" alt="Dessert Treat" id="modalProductImg" class="product-modal-img" onerror="this.onerror=null; this.src='Photos/bakery.jpeg';">
+            <span class="product-modal-tag" id="modalProductTag">Freshly Baked</span>
+          </div>
+        </div>
+        <div class="product-modal-details">
+          <span class="product-modal-category" id="modalProductCategory">Artisanal Pastry</span>
+          <h2 class="product-modal-title" id="modalProductTitle">Dessert Name</h2>
+          <p class="product-modal-desc" id="modalProductDesc">Charming description here...</p>
+          
+          <!-- Flavour / Variant Selector -->
+          <div class="product-modal-variants-section">
+            <label class="modal-field-label">Choose Flavour / Style:</label>
+            <div class="variant-chips-container" id="modalProductVariants">
+              <!-- Variant pills inserted via JS -->
+            </div>
+          </div>
+
+          <!-- Quantity Stepper -->
+          <div class="product-modal-controls-row">
+            <div class="quantity-picker-box">
+              <label class="modal-field-label">Quantity:</label>
+              <div class="qty-stepper">
+                <button class="qty-btn" id="modalQtyMinus" type="button" aria-label="Decrease quantity">−</button>
+                <span class="qty-value" id="modalQtyValue">1</span>
+                <button class="qty-btn" id="modalQtyPlus" type="button" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add To Basket Button -->
+          <div class="product-modal-actions">
+            <button class="btn btn-bakery-primary btn-add-to-basket" id="btnModalAddToBasket">
+              <span class="btn-icon">🧺</span>
+              <span>Add to Gini's Basket ♡</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY CART DRAWER (YOUR LITTLE BASKET OF HAPPINESS)
+       ============================================================ -->
+  <div class="modal-overlay bakery-cart-overlay" id="bakeryCartDrawer" aria-hidden="true">
+    <div class="cart-drawer-card">
+      <div class="cart-drawer-header">
+        <div class="cart-header-title-box">
+          <span class="cart-header-icon">🧺</span>
+          <div>
+            <h2 class="cart-title">Your Little Basket of Happiness ♡</h2>
+            <p class="cart-subtitle">Every treat hand-picked with love for Gini</p>
+          </div>
+        </div>
+        <button class="btn-back-home modal-close-btn cart-close-btn" id="closeBakeryCartDrawer" aria-label="Back to Bakery">
+          <span>← Back to Bakery</span>
+        </button>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div class="cart-drawer-body" id="cartDrawerBody">
+        <!-- Rendered by JS: list of items or empty state -->
+      </div>
+
+      <!-- Baker's Note Input -->
+      <div class="cart-note-section">
+        <label for="cartBakerNote" class="cart-note-label">
+          <span>💌 A little note for Gini's SugarCloud box:</span>
+        </label>
+        <textarea id="cartBakerNote" class="cart-note-input" rows="2" placeholder="e.g. Add extra ribbons, sweetest wishes, or a big warm hug! 🌸 ♡"></textarea>
+      </div>
+
+      <!-- Cart Footer Actions -->
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-row">
+          <span class="cart-summary-text">Total Treats in Basket:</span>
+          <span class="cart-summary-count" id="cartTotalItemsCount">0</span>
+        </div>
+        <div class="cart-actions-row">
+          <button class="btn-cart-clear" id="btnCartClear" type="button">Clear Basket</button>
+          <button class="btn btn-bakery-primary btn-pack-order" id="btnCartPackOrder" type="button">
+            <span class="btn-icon">🎀</span>
+            <span>Pack My Little Happiness ♡</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY PACKING ANIMATION OVERLAY (4-STAGE GIFT BOX SEQUENCE)
+       ============================================================ -->
+  <div class="packing-overlay" id="packingOverlay" aria-hidden="true">
+    <div class="packing-stage-wrapper">
+      <!-- Skip Button -->
+      <button class="btn-skip-animation" id="btnSkipPackingAnim" type="button">
+        Skip Animation ⏭
+      </button>
+
+      <!-- Stage Status Tracker -->
+      <div class="packing-status-box">
+        <span class="packing-step-badge" id="packingStepBadge">STAGE 1 / 4</span>
+        <h3 class="packing-step-title" id="packingStepTitle">Preparing Gini's Boutique Gift Box...</h3>
+        <p class="packing-step-desc" id="packingStepDesc">Handcrafting the boutique SugarCloud box with love</p>
+      </div>
+
+      <!-- 3D Boutique Bakery Box Illustration -->
+      <div class="bakery-box-container" id="bakeryBoxContainer">
+        <!-- The Box Lid -->
+        <div class="box-lid" id="boxLid">
+          <div class="box-lid-top">
+            <span class="box-monogram">Gini's Sweets ♡</span>
+          </div>
+        </div>
+
+        <!-- The Box Body (Where treats drop in) -->
+        <div class="box-body" id="boxBody">
+          <div class="box-interior-tissue"></div>
+          <!-- Treats dropping container -->
+          <div class="box-treats-drop-zone" id="boxTreatsDropZone">
+            <!-- Miniature dropping treat icons injected during stage 2 -->
+          </div>
+        </div>
+
+        <!-- Rose Gold Satin Ribbon & Bow (Animated in stage 3) -->
+        <div class="box-ribbon-horizontal" id="boxRibbonH"></div>
+        <div class="box-ribbon-vertical" id="boxRibbonV"></div>
+        <div class="box-ribbon-bow" id="boxRibbonBow">
+          <div class="bow-loop bow-left"></div>
+          <div class="bow-loop bow-right"></div>
+          <div class="bow-center"></div>
+        </div>
+
+        <!-- Blush Pink Wax Heart Seal (Stamps in stage 3) -->
+        <div class="box-wax-seal" id="boxWaxSeal">
+          <span class="wax-heart-symbol">🌸</span>
+        </div>
+      </div>
+
+      <!-- Floating Sparkles Container -->
+      <div class="packing-sparkles" id="packingSparkles"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY ORDER CONFIRMATION MODAL
+       ============================================================ -->
+  <div class="modal-overlay bakery-confirm-overlay" id="bakeryConfirmationModal" aria-hidden="true">
+    <div class="modal-card confirmation-card">
+      <div class="confirmation-badge">
+        <span class="badge-icon">🎀</span>
+        <span>FRESHLY PACKED WITH LOVE</span>
+      </div>
+
+      <div class="confirmation-box-preview">
+        <div class="mini-packed-gift-box">
+          <div class="mini-box-lid"></div>
+          <div class="mini-box-ribbon-h"></div>
+          <div class="mini-box-ribbon-v"></div>
+          <span class="mini-box-heart">🌸</span>
+        </div>
+      </div>
+
+      <h2 class="confirmation-title">Your Sweet Escape is Ready, Gini! ♡</h2>
+      <p class="confirmation-subtitle">
+        Every treat has been tucked in, wrapped in signature powder-blue satin ribbon, and sealed with our heart.
+      </p>
+
+      <!-- Order ID Pill -->
+      <div class="order-id-pill">
+        <span class="order-id-label">SugarCloud Order ID:</span>
+        <span class="order-id-code" id="confirmOrderId">GINI-SUGARCLOUD-7294</span>
+      </div>
+
+      <!-- Admin Email Notification Badge -->
+      <div class="confirm-email-status" id="confirmEmailStatus">
+        <span class="confirm-email-icon">💌</span>
+        <span class="confirm-email-text" id="confirmEmailText">Order details notified to Admin's inbox</span>
+      </div>
+
+      <!-- Baker's Note Preview (if entered) -->
+      <div class="confirm-note-box" id="confirmNoteBox" style="display: none;">
+        <span class="confirm-note-tag">💌 Baker's Dedicated Note:</span>
+        <p class="confirm-note-text" id="confirmNoteText"></p>
+      </div>
+
+      <!-- Treats Inside Recap -->
+      <div class="confirm-items-recap">
+        <h4 class="recap-heading">Packed Treats Inside Your Box:</h4>
+        <div class="recap-list" id="confirmRecapList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="confirmation-actions">
+        <button class="btn btn-bakery-primary" id="btnConfirmNewOrder">
+          <span class="btn-icon">🍰</span>
+          <span>Order Another Box</span>
+        </button>
+        <button class="btn btn-bakery-secondary" id="btnConfirmOpenDesk">
+          <span class="btn-icon">📋</span>
+          <span>View in SugarCloud Desk</span>
+        </button>
+        <button class="btn-confirm-close" id="btnCloseConfirmation">
+          <span>Back to SugarCloud Counter</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY DESK MODAL (SIMULATED ORDER LOG & STATUS MANAGEMENT)
+       ============================================================ -->
+  <div class="modal-overlay bakery-desk-overlay" id="bakeryDeskModal" aria-hidden="true">
+    <div class="modal-card bakery-desk-card">
+      <button class="btn-back-home modal-close-btn" id="closeBakeryDeskModal" aria-label="Back to Bakery">
+        <span>← Back to Bakery</span>
+      </button>
+      <div class="desk-header">
+        <div class="desk-icon-badge">📋</div>
+        <div>
+          <span class="modal-tag">SUGARCLOUD DISPATCH</span>
+          <h2 class="modal-title">Gini's SugarCloud Order Desk ♡</h2>
+          <p class="modal-desc">Manage simulated SugarCloud orders and status updates for Shubhangini.</p>
+        </div>
+      </div>
+
+      <div class="desk-orders-container" id="deskOrdersContainer">
+        <!-- Rendered by JS: list of orders with status toggles -->
+      </div>
+
+      <div class="desk-footer">
+        <button class="btn-desk-clear" id="btnDeskClearOrders">Clear Order History</button>
+        <button class="btn btn-bakery-primary" id="btnCloseBakeryDesk">
+          <span>Return to SugarCloud Counter</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Music Controls (Fixed bottom-left, accessible anywhere while scrolling) -->
+  <div class="floating-music-bar" id="musicBar" aria-label="Floating Soundtrack Controller">
+    <div class="music-ctrl-buttons">
+      <button class="music-ctrl-btn" id="btnPrevTrack" title="Previous Song" aria-label="Previous track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+      <button class="music-ctrl-btn music-play-btn" id="btnPlayTrack" title="Play / Pause Song" aria-label="Play or pause soundtrack">
+        <span class="music-note-icon" id="musicNoteIcon">▶</span>
+      </button>
+      <button class="music-ctrl-btn" id="btnNextTrack" title="Next Song" aria-label="Next track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Track notification tooltip & now playing preview -->
+    <div class="track-info-popup" id="trackInfoPopup">
+      <div class="track-popup-thumb-wrap">
+        <img src="Photos/music/JabTak_img3.jpg" id="trackPopupThumb" class="track-popup-thumb" alt="Track cover">
+      </div>
+      <div class="track-popup-details">
+        <span class="track-label">NOW PLAYING ♡</span>
+        <span class="track-title" id="trackTitle">Jab Tak</span>
+        <span class="track-artist" id="trackArtist">Armaan Malik</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Basket Pill (Quick access anytime) -->
+  <button class="sticky-cart-pill" id="btnStickyCart" aria-label="Open Gini's Dessert Basket" title="View Gini's Basket">
+    <span class="sticky-cart-icon">🧺</span>
+    <span class="sticky-cart-label">Gini's Basket</span>
+    <span class="sticky-cart-badge" id="stickyCartBadge">0</span>
+  </button>
+
+  <!-- Floating Cheerful Toast Container -->
+  <div class="bakery-toast-container" id="bakeryToastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="data/playlist.js?v=3"></script>
+  <script src="data/personal-letter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=15"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

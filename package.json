@@ -1,0 +1,16 @@
+{
+  "name": "gini_birthday",
+  "version": "1.0.0",
+  "description": "A romantic web experience in a soothing pastel sky-blue palette, featuring your personal photos, an uncluttered landing page, and a real-time live working clock footer in the soothing blue of love with orbiting photo memories.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "nodemailer": "^10.1.7"
+  }
+}

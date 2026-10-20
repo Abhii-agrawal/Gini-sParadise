@@ -1,0 +1,178 @@
+[
+  {
+    "id": "GINI-SUGARCLOUD-7511",
+    "timestamp": "Oct 20, 05:35 PM",
+    "items": [
+      {
+        "id": "cookies",
+        "name": "Artisanal Warm Cookies",
+        "variant": "Sea Salt Dark Choc",
+        "qty": 2,
+        "img": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+        "icon": "🍪"
+      },
+      {
+        "id": "blueberry-cheesecake",
+        "name": "Blueberry Cloud Cheesecake",
+        "variant": "Wild Blueberry Swirl",
+        "qty": 2,
+        "img": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+        "icon": "🫐"
+      }
+    ],
+    "note": "",
+    "status": "Accepted"
+  },
+  {
+    "id": "GINI-SUGARCLOUD-9623",
+    "timestamp": "Oct 20, 04:55 PM",
+    "items": [
+      {
+        "id": "cookies",
+        "name": "Artisanal Warm Cookies",
+        "variant": "Sea Salt Dark Choc",
+        "qty": 1,
+        "img": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+        "icon": "🍪"
+      },
+      {
+        "id": "blueberry-cheesecake",
+        "name": "Blueberry Cloud Cheesecake",
+        "variant": "Wild Blueberry Swirl",
+        "qty": 1,
+        "img": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+        "icon": "🫐"
+      },
+      {
+        "id": "kaju-barfi",
+        "name": "Royal Kaju Katli",
+        "variant": "Pure Silver Leaf Royal",
+        "qty": 1,
+        "img": "Photos/KajuKatli.jpg",
+        "icon": "💎"
+      }
+    ],
+    "note": "",
+    "status": "Accepted"
+  },
+  {
+    "id": "GINI-SUGARCLOUD-8775",
+    "timestamp": "Oct 20, 02:11 PM",
+    "items": [
+      {
+        "id": "cookies",
+        "name": "Artisanal Warm Cookies",
+        "variant": "Sea Salt Dark Choc",
+        "qty": 1,
+        "img": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+        "icon": "🍪"
+      },
+      {
+        "id": "kaju-barfi",
+        "name": "Royal Kaju Katli",
+        "variant": "Pure Silver Leaf Royal",
+        "qty": 1,
+        "img": "Photos/KajuKatli.jpg",
+        "icon": "💎"
+      },
+      {
+        "id": "blueberry-cheesecake",
+        "name": "Blueberry Cloud Cheesecake",
+        "variant": "Wild Blueberry Swirl",
+        "qty": 1,
+        "img": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+        "icon": "🫐"
+      }
+    ],
+    "note": "",
+    "status": "Accepted"
+  },
+  {
+    "id": "GINI-SUGARCLOUD-1036",
+    "timestamp": "Oct 20, 12:23 PM",
+    "items": [
+      {
+        "id": "cookies",
+        "name": "Artisanal Warm Cookies",
+        "variant": "Sea Salt Dark Choc",
+        "qty": 1,
+        "img": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80",
+        "icon": "🍪"
+      }
+    ],
+    "note": "",
+    "status": "Accepted"
+  },
+  {
+    "id": "GINI-SUGARCLOUD-VERIFIED",
+    "timestamp": "20/10/2026, 12:21:46 pm",
+    "items": [
+      {
+        "name": "Blueberry Cloud Cupcake",
+        "variant": "Box of 4",
+        "qty": 2,
+        "icon": "🧁"
+      },
+      {
+        "name": "Pastel Parisian Macaron",
+        "variant": "Box of 6",
+        "qty": 1,
+        "icon": "🍓"
+      },
+      {
+        "name": "Royal Pistachio Rasmalai",
+        "variant": "Chilled Jar",
+        "qty": 1,
+        "icon": "🍯"
+      }
+    ],
+    "note": "Happy Birthday Gini! Testing live admin email alert ♡",
+    "status": "Accepted"
+  },
+  {
+    "id": "GINI-SUGARCLOUD-8842",
+    "timestamp": "Oct 20, 12:45 PM",
+    "items": [
+      {
+        "name": "Blueberry Cloud Cupcake",
+        "variant": "Box of 4",
+        "qty": 2,
+        "icon": "🧁"
+      },
+      {
+        "name": "Strawberry Velvet Macaron",
+        "variant": "Box of 6",
+        "qty": 1,
+        "icon": "🍓"
+      },
+      {
+        "name": "Artisan Hazelnut Éclair",
+        "variant": "Single",
+        "qty": 3,
+        "icon": "🥖"
+      }
+    ],
+    "note": "For the sweetest birthday ever! ♡",
+    "status": "Accepted"
+  },
+  {
+    "id": "TEST-ORDER-101",
+    "timestamp": "Oct 20, 12:15 PM",
+    "items": [
+      {
+        "name": "Blueberry Cloud Cupcake",
+        "variant": "Box of 4",
+        "qty": 2,
+        "icon": "🧁"
+      },
+      {
+        "name": "Strawberry Velvet Macaron",
+        "variant": "Box of 6",
+        "qty": 1,
+        "icon": "🍓"
+      }
+    ],
+    "note": "Please add extra sparkles on top! ♡",
+    "status": "Accepted"
+  }
+]

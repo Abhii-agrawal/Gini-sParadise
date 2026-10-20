@@ -1,0 +1,20 @@
+{
+  "adminEmail": "abhishekagrawal031@gmail.com",
+  "adminName": "Abhishek",
+  "senderName": "Gini's SugarCloud Boutique 🧁",
+  "smtp": {
+    "enabled": true,
+    "service": "gmail",
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "abhishekagrawal031@gmail.com",
+      "pass": "yvhrtvsjuubwgkdb"
+    }
+  },
+  "web3forms": {
+    "enabled": false,
+    "accessKey": ""
+  }
+}

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Letter 💌 | The Gini Paradise</title>
+  <link rel="icon" href="Photos/clock1.jpg" type="image/jpeg">
+
+  <!-- Google Fonts: Poppins (300 to 900) & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Global Design System -->
+  <link rel="stylesheet" href="style.css?v=15">
+
+  <!-- Instant Theme Persistence (Anti-FOUC: Default Light Mode) -->
+  <script>
+    (function() {
+      try {
+        localStorage.removeItem('gini_theme');
+        if (sessionStorage.getItem('gini_theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    body {
+      min-height: 100vh;
+    }
+    .standalone-page-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Liquid Navigation Header -->
+  <header class="navbar-liquid-header" id="mainHeader">
+    <nav class="navbar-liquid-container">
+      <!-- Left Brand Pill -->
+      <div class="nav-brand-pill">
+        <div class="brand-avatar-badge">
+          <span>✨</span>
+        </div>
+        <a href="index.html#home" class="brand-link">Gini's Paradise</a>
+      </div>
+
+      <!-- Center Segmented Navigation Capsule -->
+      <div class="nav-segmented-track">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="index.html#home" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="playlist.html" class="nav-link">Jukebox 📻</a>
+          </li>
+          <li class="nav-item">
+            <a href="bakery.html" class="nav-link">SugarCloud 🍰</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Action Islands -->
+      <div class="nav-actions-island">
+        <button class="nav-icon-liquid-btn glow-sun" id="ambientLightBtn" title="Toggle Celestial Glow Ambient Light" aria-label="Toggle ambient lighting">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <circle cx="12" cy="12" r="5" fill="#D48B97" />
+            <g stroke="#D48B97" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <button class="nav-icon-liquid-btn" id="soundToggleBtn" title="Toggle Ambient Audio" aria-label="Toggle background audio">
+          <i data-lucide="headphones" class="icon-headphones"></i>
+          <span class="audio-wave-indicator" id="audioWave"></span>
+        </button>
+        <a href="index.html" class="btn-fullview-action" title="Back to Main Experience">
+          <span>← Back to Home</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Complete Full-Width Letter Experience -->
+  <main class="standalone-page-wrapper" style="padding-top: 5.5rem;">
+    <div id="letters" class="letter-modal-inner" style="min-height: calc(100vh - 5.5rem);">
+      <canvas id="lettersParticlesCanvas" class="letters-ambient-canvas"></canvas>
+      
+      <!-- Ambient Radial Light Blooms -->
+      <div class="letters-ambient-glow glow-top"></div>
+      <div class="letters-ambient-glow glow-bottom"></div>
+
+      <div class="letters-container">
+
+        <!-- STAGE 1: 3D SEALED ENVELOPE STAGE -->
+        <div class="single-letter-envelope-stage" id="singleLetterEnvelopeStage">
+          
+          <!-- Header Typography (Left-Aligned) -->
+          <div class="envelope-stage-header text-left">
+            <span class="letter-pre-badge">💌 A LITTLE SOMETHING FOR YOU</span>
+            <h2 class="letter-hero-title">For Shubhangini, with love.</h2>
+          </div>
+
+          <!-- 3D Realistic Envelope Assembly -->
+          <div class="envelope-3d-scene">
+            <div class="envelope-3d-wrapper" id="envelope3DWrapper" title="Click to open the letter for Shubhangini">
+              
+              <!-- Envelope Back Wall & Interior Powder-Blue Satin Lining -->
+              <div class="envelope-back-wall">
+                <div class="envelope-inner-lining">
+                  <div class="lining-pattern"></div>
+                </div>
+              </div>
+
+              <!-- Cream Letter Sheet Inside (Peeks & slides out during opening animation) -->
+              <div class="envelope-sliding-sheet" id="envelopeSlidingSheet">
+                <div class="sheet-postal-mark">✦ SPECIAL AIRMAIL · GINI ✦</div>
+                <div class="sheet-mini-lines">
+                  <span class="line"></span>
+                  <span class="line short"></span>
+                  <span class="line"></span>
+                </div>
+                <div class="sheet-seal-symbol">🌹</div>
+              </div>
+
+                <!-- Envelope Back Lower Body (Authentic Folded Seams & Calligraphy) -->
+                <div class="envelope-back-pocket">
+                  <div class="envelope-seam-bottom"></div>
+                  <div class="envelope-seam-left"></div>
+                  <div class="envelope-seam-right"></div>
+                  
+                  <!-- Elegant Calligraphy at the Bottom -->
+                  <div class="envelope-calligraphy-mark">
+                    <span class="calligraphy-for">Just for</span>
+                    <h3 class="calligraphy-name">Shubhangini ♡</h3>
+                    <span class="calligraphy-sub">With all my love · Abhishek</span>
+                  </div>
+                </div>
+
+                <!-- Envelope 3D Foldable Flap with Wax Seal -->
+                <div class="envelope-3d-flap" id="envelope3DFlap">
+                  <div class="flap-outer-tri"></div>
+                  <div class="flap-inner-tri"></div>
+
+                  <!-- Wax Seal Button Centered on Flap Tip -->
+                  <div class="envelope-wax-seal" id="envelopeWaxSeal" title="Break the seal and open letter">
+                    <div class="seal-glow-ring"></div>
+                    <div class="seal-wax-disc">
+                      <span class="seal-emblem">🌹</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Skip Option -->
+            <div class="envelope-action-bar text-center">
+              <div>
+                <button class="btn-skip-envelope-action" id="btnSkipEnvelopeAction" type="button">
+                  Skip animation & read directly →
+                </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- STAGE 3: FOREVER US CINEMATIC READING VIEW -->
+        <div class="single-letter-reading-view" id="singleLetterReadingView" style="display: none;">
+          
+          <article class="reading-card-forever-us">
+            
+            <!-- Editorial Header (Left-Aligned) -->
+            <header class="reading-letter-header text-left">
+              <h1 class="reading-letter-title">A Little Something for You</h1>
+            </header>
+
+            <!-- Romantic Song Player Pill (Optional listening) -->
+            <div class="reading-song-card" id="letterSongCard">
+              <div class="song-disc-vinyl" id="letterSongVinyl">
+                <img src="Photos/music/yellow_coldplay.jpg" alt="Yellow - Coldplay" class="song-disc-img">
+                <span class="vinyl-center-dot"></span>
+              </div>
+              <div class="song-details">
+                <span class="song-kicker">A SONG FOR THIS LETTER</span>
+                <div class="song-title-row">
+                  <strong class="song-name" id="letterSongTitle">Yellow</strong>
+                  <span class="song-bullet">·</span>
+                  <span class="song-artist" id="letterSongArtist">Coldplay</span>
+                </div>
+              </div>
+              <div class="song-wave-visualizer" id="letterSongVisualizer" aria-hidden="true">
+                <span class="wave-bar bar-1"></span>
+                <span class="wave-bar bar-2"></span>
+                <span class="wave-bar bar-3"></span>
+                <span class="wave-bar bar-4"></span>
+                <span class="wave-bar bar-5"></span>
+              </div>
+              <button class="btn-song-action" id="btnToggleLetterSong" title="Listen to this letter's soundtrack" aria-label="Play song">
+                <span id="letterSongPlayIcon">▶</span>
+                <span id="letterSongPlayText">Play Melody</span>
+              </button>
+            </div>
+
+              <!-- The Personal Letter Content Body (Artisanal Polaroid Scrapbook Sections) -->
+              <div class="reading-letter-body" id="readingLetterBody">
+                
+                <div class="letter-salutation">Happiest Birthdayyy, Dear Shubhanginiii ♡</div>
+
+                <!-- Section 1: Memory & Special Bond (First Photo Left, Right Side Text) -->
+                <section class="letter-story-section section-photo-left">
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-left" onclick="window.previewPhoto('Photos/letter2.jpeg')" title="Click to view full photo">
+                      <div class="washi-tape tape-top"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter2.jpeg" alt="Abhishek and Shubhangini smiling together on a bus ride" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “Silly conversations, unhurried journeys, and laughter that made ordinary days unforgettable. ♡”
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="section-text-col">
+                    <p class="letter-p letter-lead">
+                      You’re so much more special to me than you’ll ever understand. I could probably write pages and pages about what you mean to me and still find a hundred more things to say.
+                    </p>
+                    <p class="letter-p">
+                      You’ve become such an important part of my life that I honestly can’t imagine my days without you in them. Thank you for always understanding me, for staying, and for making me feel safe and happy in ways you probably don’t even realise. I’m genuinely so grateful to have you in my life.
+                    </p>
+                  </div>
+                </section>
+
+                <!-- Section 2: Birthday Wishes & Dreams (Text Left, Second Photo Right) -->
+                <section class="letter-story-section section-photo-right">
+                  <div class="section-text-col">
+                    <p class="letter-p">
+                      I know there are a thousand ways to wish someone a birthday, but I wanted to wish you a little differently. So, I hope life always gives you the window seat, the extra fries, all your favourite KFC chicken and sweets from every corner of the world.
+                    </p>
+                    <p class="letter-p">
+                      Green traffic lights when you’re running late, a playlist that knows your mood, friends who start laughing before you even finish the joke, random flowers, your dream job, a full bank account, and your favourite food waiting for you after the longest day. And whenever the world feels a little unkind, I hope someone is there to make it feel a little better. May you always have enough reasons to say, “That was a good day.” And I hope you get everything you never knew how to ask for.
+                    </p>
+                  </div>
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-right polaroid-portrait" onclick="window.previewPhoto('Photos/letter1.jpeg?v=2')" title="Click to view full photo">
+                      <div class="washi-tape tape-top-right"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter1.jpeg?v=2" alt="Abhishek and Shubhangini walking side by side towards the temple" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “To walking side by side, visiting a hundred more places, and choosing these adventures with you every single time. 🌿”
+                      </figcaption>
+                    </figure>
+                  </div>
+                </section>
+
+                <!-- Section 3: A Part of Me Forever (Third Photo Left, Right Side Text) -->
+                <section class="letter-story-section section-photo-left">
+                  <div class="section-photo-col">
+                    <figure class="polaroid-card polaroid-tilt-left" onclick="window.previewPhoto('Photos/letter3.jpeg')" title="Click to view full photo">
+                      <div class="washi-tape tape-top"></div>
+                      <div class="polaroid-frame">
+                        <img src="Photos/letter3.jpeg" alt="Abhishek and Shubhangini smiling together in the hall" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-glare"></div>
+                      </div>
+                      <figcaption class="polaroid-caption">
+                        “Every quiet smile, every shared glance, and all the moments that feel like home with you. ♡”
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="section-text-col">
+                    <p class="letter-p">
+                      Some people come into your life and become memories, but then there are people who become a part of you. You’re one of those people for me. No matter where life takes us, I hope we always find our way back to each other.
+                    </p>
+                    <p class="letter-p">
+                      And more than anything, I hope life lets us stay a part of each other’s stories for a long, long time, through all the changes, all the different versions of ourselves, and all the years still waiting for us. I hope you never forget that you’ll never be just another person to me. You’ll always be someone incredibly special, someone I could never replace, and someone I’ll always be thankful to have in my life. I hope you know how deeply you’re respected, valued, cherished, and loved by me.
+                    </p>
+                  </div>
+                </section>
+
+                <!-- Section 4: The Climax, Celebration & Handwritten Sign-off -->
+                <section class="letter-story-section section-climax">
+                  <p class="letter-p letter-lead" style="margin-bottom: 1.5rem;">
+                    Once again, the happiest birthday to you, Shubhanginiii! I hope this year brings you more happiness than you can imagine and gives you countless little moments that make life feel beautiful. You deserve all the good things this world has to offer, and I really hope you get to experience them all.
+                  </p>
+
+                  <div class="letter-quote-callout">
+                    <div class="quote-sparkle-decor">✧</div>
+                    <p class="quote-text">“For you, a thousand times over. ♡”</p>
+                    <div class="quote-sparkle-decor">✧</div>
+                  </div>
+
+                  <p class="letter-p letter-sweet-close">
+                    Life’s a lot sweeter with you in it.
+                  </p>
+
+                  <div class="letter-handwritten-closing">
+                    <div class="closing-phrase">With lots of love,</div>
+                    <div class="closing-author-signature">Abhishek <img src="Photos/blue-rose.svg" alt="Blue Rose" class="blue-rose-img" title="Blue Rose for Gini 💙"></div>
+                  </div>
+                </section>
+
+              </div>
+
+            <!-- Letter Card Footer Actions: Replay Envelope Animation -->
+            <footer class="reading-card-footer">
+              <button class="btn-replay-envelope" id="btnReplayEnvelope" title="Replay the 3D envelope opening animation">
+                <span class="replay-icon">↺</span>
+                <span>Replay Envelope Opening</span>
+              </button>
+            </footer>
+
+          </article>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Image Lightbox Modal for Photo Zooming -->
+  <div class="modal-overlay" id="imageLightboxModal" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="btn-back-home modal-close-btn lightbox-close-btn" aria-label="Back">
+        <span>← Back</span>
+      </button>
+      <img src="" alt="Enlarged Memory Photo" id="lightboxImg" class="lightbox-img">
+    </div>
+  </div>
+
+  <!-- Floating Music Controls (Fixed bottom-left, accessible anywhere while scrolling) -->
+  <div class="floating-music-bar" id="musicBar" aria-label="Floating Soundtrack Controller">
+    <div class="music-ctrl-buttons">
+      <button class="music-ctrl-btn" id="btnPrevTrack" title="Previous Song" aria-label="Previous track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+      <button class="music-ctrl-btn music-play-btn" id="btnPlayTrack" title="Play / Pause Song" aria-label="Play or pause soundtrack">
+        <span class="music-note-icon" id="musicNoteIcon">▶</span>
+      </button>
+      <button class="music-ctrl-btn" id="btnNextTrack" title="Next Song" aria-label="Next track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Track notification tooltip & now playing preview -->
+    <div class="track-info-popup" id="trackInfoPopup">
+      <div class="track-popup-thumb-wrap">
+        <img src="Photos/music/JabTak_img3.jpg" id="trackPopupThumb" class="track-popup-thumb" alt="Track cover">
+      </div>
+      <div class="track-popup-details">
+        <span class="track-label">NOW PLAYING ♡</span>
+        <span class="track-title" id="trackTitle">Jab Tak</span>
+        <span class="track-artist" id="trackArtist">Armaan Malik</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="bakery-toast-container" id="bakeryToastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="data/playlist.js?v=3"></script>
+  <script src="data/personal-letter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=15"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

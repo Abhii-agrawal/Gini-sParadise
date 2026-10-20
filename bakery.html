@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gini's SugarCloud 🍰 | The Gini Paradise</title>
+  <link rel="icon" href="Photos/clock1.jpg" type="image/jpeg">
+
+  <!-- Google Fonts: Poppins (300 to 900) & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Global Design System -->
+  <link rel="stylesheet" href="style.css?v=15">
+
+  <!-- Instant Theme Persistence (Anti-FOUC: Default Light Mode) -->
+  <script>
+    (function() {
+      try {
+        localStorage.removeItem('gini_theme');
+        if (sessionStorage.getItem('gini_theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    body {
+      min-height: 100vh;
+    }
+    .standalone-page-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Liquid Navigation Header -->
+  <header class="navbar-liquid-header" id="mainHeader">
+    <nav class="navbar-liquid-container">
+      <!-- Left Brand Pill -->
+      <div class="nav-brand-pill">
+        <div class="brand-avatar-badge">
+          <span>✨</span>
+        </div>
+        <a href="index.html#home" class="brand-link">Gini's Paradise</a>
+      </div>
+
+      <!-- Center Segmented Navigation Capsule -->
+      <div class="nav-segmented-track">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="index.html#home" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="playlist.html" class="nav-link">Jukebox 📻</a>
+          </li>
+          <li class="nav-item">
+            <a href="bakery.html" class="nav-link active">SugarCloud 🍰</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Action Islands -->
+      <div class="nav-actions-island">
+        <button class="nav-icon-liquid-btn glow-sun" id="ambientLightBtn" title="Toggle Celestial Glow Ambient Light" aria-label="Toggle ambient lighting">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <circle cx="12" cy="12" r="5" fill="#D48B97" />
+            <g stroke="#D48B97" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="1" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
+        <button class="nav-icon-liquid-btn" id="soundToggleBtn" title="Toggle Ambient Audio" aria-label="Toggle background audio">
+          <i data-lucide="headphones" class="icon-headphones"></i>
+          <span class="audio-wave-indicator" id="audioWave"></span>
+        </button>
+        <a href="index.html" class="btn-fullview-action" title="Back to Main Experience">
+          <span>← Back to Home</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Complete Full-Size Bakery Experience -->
+  <main class="standalone-page-wrapper" style="padding-top: 5.5rem;">
+    <div id="bakery" class="bakery-modal-inner" style="min-height: calc(100vh - 5.5rem);">
+      <!-- Atmospheric Bakery Glow & Floating Accents -->
+      <div class="bakery-ambient-backdrop">
+        <div class="bakery-light-orb orb-1"></div>
+        <div class="bakery-light-orb orb-2"></div>
+        <div class="bakery-pattern-grid"></div>
+      </div>
+
+      <div class="bakery-fullview-container">
+        <div class="bakery-container">
+          <!-- THE BAKERY COUNTER & SHOWCASE -->
+          <div class="bakery-counter-wrapper" id="bakeryCounter">
+            
+            <!-- Parisian Boutique Canopy / Awning -->
+            <div class="bakery-canopy">
+              <div class="canopy-scallops"></div>
+              <div class="canopy-sign">
+                <div class="sign-filigree-left">❦</div>
+                <div class="sign-content">
+                  <span class="sign-sub">ARTISANAL SWEET CREATIONS</span>
+                  <h3 class="sign-main">Gini's SugarCloud</h3>
+                  <span class="sign-dedication">Freshly Baked with Love for Shubhangini ♡</span>
+                </div>
+                <div class="sign-filigree-right">❦</div>
+              </div>
+              <div class="canopy-lights">
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+                <span class="canopy-bulb"></span>
+              </div>
+            </div>
+
+            <!-- Counter Atmosphere & Scrapbook Notes -->
+            <div class="counter-atmosphere-row">
+              <div class="scrapbook-card note-card-1">
+                <span class="pin-icon">📌</span>
+                <p class="note-text">“Good things inside. ♡”</p>
+                <span class="note-author">— Always for you</span>
+              </div>
+
+              <!-- Central Sticky Basket Pill & Quick Access -->
+              <div class="counter-center-hud">
+                <button class="cart-floating-trigger" id="btnOpenCart" aria-label="Open Gini's Dessert Basket">
+                  <span class="cart-trigger-icon">🧺</span>
+                  <span class="cart-trigger-label">Gini's Basket</span>
+                  <span class="cart-trigger-badge" id="cartBadgeCount">0</span>
+                </button>
+              </div>
+
+              <div class="scrapbook-card note-card-2">
+                <span class="pin-icon">📌</span>
+                <p class="note-text">“A little sweetness for my favourite human. 💙”</p>
+                <span class="note-author">— Baked with love</span>
+              </div>
+            </div>
+
+            <!-- Menu Category Filter Tabs -->
+            <div class="bakery-menu-controls">
+              <div class="menu-tabs-bar" id="bakeryCategoryTabs" role="tablist">
+                <button class="menu-tab-btn active" data-category="all" role="tab" aria-selected="true">
+                  <span>All Sweet Treats (15)</span>
+                </button>
+                <button class="menu-tab-btn" data-category="pastries" role="tab" aria-selected="false">
+                  <span>Artisanal Pastries 🥐</span>
+                </button>
+                <button class="menu-tab-btn" data-category="mithai" role="tab" aria-selected="false">
+                  <span>Royal Mithai 🍯</span>
+                </button>
+                <button class="menu-tab-btn" data-category="chill" role="tab" aria-selected="false">
+                  <span>Chill & Scoops 🍨</span>
+                </button>
+                <button class="menu-tab-btn" data-category="surprise" role="tab" aria-selected="false">
+                  <span>Special Surprises 🎁</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Glass Pastry Display Showcase (The Main Counter Shelf) -->
+            <div class="glass-pastry-counter">
+              <!-- Shelf Lighting Glow -->
+              <div class="glass-shelf-light"></div>
+              
+              <!-- Glass Showcase Grid (15 Products Rendered with Full Interactivity) -->
+              <div class="pastry-display-grid" id="pastryDisplayGrid">
+                <!-- Dynamically populated and maintained with instant interactivity -->
+              </div>
+
+              <!-- Glass Shelf Reflections -->
+              <div class="counter-glass-reflection"></div>
+              
+              <!-- Counter Marble Trim Base -->
+              <div class="counter-marble-apron">
+                <div class="marble-brass-trim"></div>
+                <div class="counter-footer-meta">
+                  <span class="counter-status-pill">
+                    <span class="status-pulse-dot"></span>
+                    SugarCloud Open & Freshly Stocked ♡
+                  </span>
+                  <button class="btn-desk-discreet" id="btnOpenBakeryDesk" title="Discreet SugarCloud Desk - View & Manage Orders">
+                    <span>📋 SugarCloud Desk</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       BAKERY MODAL: PRODUCT CUSTOMIZATION & DETAILS
+       ============================================================ -->
+  <div class="modal-overlay bakery-modal-overlay" id="bakeryProductModal" aria-hidden="true">
+    <div class="modal-card bakery-product-card">
+      <button class="btn-back-home modal-close-btn" id="closeBakeryProductModal" aria-label="Back to Bakery">
+        <span>← Back to Bakery</span>
+      </button>
+      <div class="product-modal-grid">
+        <div class="product-modal-hero">
+          <div class="product-modal-img-wrapper">
+            <img src="" alt="Dessert Treat" id="modalProductImg" class="product-modal-img" onerror="this.onerror=null; this.src='Photos/bakery.jpeg';">
+            <span class="product-modal-tag" id="modalProductTag">Freshly Baked</span>
+          </div>
+        </div>
+        <div class="product-modal-details">
+          <span class="product-modal-category" id="modalProductCategory">Artisanal Pastry</span>
+          <h2 class="product-modal-title" id="modalProductTitle">Dessert Name</h2>
+          <p class="product-modal-desc" id="modalProductDesc">Charming description here...</p>
+          
+          <!-- Flavour / Variant Selector -->
+          <div class="product-modal-variants-section">
+            <label class="modal-field-label">Choose Flavour / Style:</label>
+            <div class="variant-chips-container" id="modalProductVariants">
+              <!-- Variant pills inserted via JS -->
+            </div>
+          </div>
+
+          <!-- Quantity Stepper -->
+          <div class="product-modal-controls-row">
+            <div class="quantity-picker-box">
+              <label class="modal-field-label">Quantity:</label>
+              <div class="qty-stepper">
+                <button class="qty-btn" id="modalQtyMinus" type="button" aria-label="Decrease quantity">−</button>
+                <span class="qty-value" id="modalQtyValue">1</span>
+                <button class="qty-btn" id="modalQtyPlus" type="button" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add To Basket Button -->
+          <div class="product-modal-actions">
+            <button class="btn btn-bakery-primary btn-add-to-basket" id="btnModalAddToBasket">
+              <span class="btn-icon">🧺</span>
+              <span>Add to Gini's Basket ♡</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY CART DRAWER (YOUR LITTLE BASKET OF HAPPINESS)
+       ============================================================ -->
+  <div class="modal-overlay bakery-cart-overlay" id="bakeryCartDrawer" aria-hidden="true">
+    <div class="cart-drawer-card">
+      <div class="cart-drawer-header">
+        <div class="cart-header-title-box">
+          <span class="cart-header-icon">🧺</span>
+          <div>
+            <h2 class="cart-title">Your Little Basket of Happiness ♡</h2>
+            <p class="cart-subtitle">Every treat hand-picked with love for Gini</p>
+          </div>
+        </div>
+        <button class="btn-back-home modal-close-btn cart-close-btn" id="closeBakeryCartDrawer" aria-label="Back to Bakery">
+          <span>← Back to Bakery</span>
+        </button>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div class="cart-drawer-body" id="cartDrawerBody">
+        <!-- Rendered by JS: list of items or empty state -->
+      </div>
+
+      <!-- Baker's Note Input -->
+      <div class="cart-note-section">
+        <label for="cartBakerNote" class="cart-note-label">
+          <span>💌 A little note for Gini's SugarCloud box:</span>
+        </label>
+        <textarea id="cartBakerNote" class="cart-note-input" rows="2" placeholder="e.g. Add extra ribbons, sweetest wishes, or a big warm hug! 💙"></textarea>
+      </div>
+
+      <!-- Cart Footer Actions -->
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-row">
+          <span class="cart-summary-text">Total Treats in Basket:</span>
+          <span class="cart-summary-count" id="cartTotalItemsCount">0</span>
+        </div>
+        <div class="cart-actions-row">
+          <button class="btn-cart-clear" id="btnCartClear" type="button">Clear Basket</button>
+          <button class="btn btn-bakery-primary btn-pack-order" id="btnCartPackOrder" type="button">
+            <span class="btn-icon">🎀</span>
+            <span>Pack My Little Happiness ♡</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY PACKING ANIMATION OVERLAY (4-STAGE GIFT BOX SEQUENCE)
+       ============================================================ -->
+  <div class="packing-overlay" id="packingOverlay" aria-hidden="true">
+    <div class="packing-stage-wrapper">
+      <!-- Skip Button -->
+      <button class="btn-skip-animation" id="btnSkipPackingAnim" type="button">
+        Skip Animation ⏭
+      </button>
+
+      <!-- Stage Status Tracker -->
+      <div class="packing-status-box">
+        <span class="packing-step-badge" id="packingStepBadge">STAGE 1 / 4</span>
+        <h3 class="packing-step-title" id="packingStepTitle">Preparing Gini's Boutique Gift Box...</h3>
+        <p class="packing-step-desc" id="packingStepDesc">Handcrafting the powder-blue SugarCloud box with love</p>
+      </div>
+
+      <!-- 3D Boutique Bakery Box Illustration -->
+      <div class="bakery-box-container" id="bakeryBoxContainer">
+        <!-- The Box Lid -->
+        <div class="box-lid" id="boxLid">
+          <div class="box-lid-top">
+            <span class="box-monogram">Gini's Sweets ♡</span>
+          </div>
+        </div>
+
+        <!-- The Box Body (Where treats drop in) -->
+        <div class="box-body" id="boxBody">
+          <div class="box-interior-tissue"></div>
+          <!-- Treats dropping container -->
+          <div class="box-treats-drop-zone" id="boxTreatsDropZone">
+            <!-- Miniature dropping treat icons injected during stage 2 -->
+          </div>
+        </div>
+
+        <!-- Dusty Blue Satin Ribbon & Bow (Animated in stage 3) -->
+        <div class="box-ribbon-horizontal" id="boxRibbonH"></div>
+        <div class="box-ribbon-vertical" id="boxRibbonV"></div>
+        <div class="box-ribbon-bow" id="boxRibbonBow">
+          <div class="bow-loop bow-left"></div>
+          <div class="bow-loop bow-right"></div>
+          <div class="bow-center"></div>
+        </div>
+
+        <!-- Blush Pink Wax Heart Seal (Stamps in stage 3) -->
+        <div class="box-wax-seal" id="boxWaxSeal">
+          <span class="wax-heart-symbol">💙</span>
+        </div>
+      </div>
+
+      <!-- Floating Sparkles Container -->
+      <div class="packing-sparkles" id="packingSparkles"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY ORDER CONFIRMATION MODAL
+       ============================================================ -->
+  <div class="modal-overlay bakery-confirm-overlay" id="bakeryConfirmationModal" aria-hidden="true">
+    <div class="modal-card confirmation-card">
+      <div class="confirmation-badge">
+        <span class="badge-icon">🎀</span>
+        <span>FRESHLY PACKED WITH LOVE</span>
+      </div>
+
+      <div class="confirmation-box-preview">
+        <div class="mini-packed-gift-box">
+          <div class="mini-box-lid"></div>
+          <div class="mini-box-ribbon-h"></div>
+          <div class="mini-box-ribbon-v"></div>
+          <span class="mini-box-heart">💙</span>
+        </div>
+      </div>
+
+      <h2 class="confirmation-title">Your Sweet Escape is Ready, Gini! ♡</h2>
+      <p class="confirmation-subtitle">
+        Every treat has been tucked in, wrapped in signature powder-blue satin ribbon, and sealed with our heart.
+      </p>
+
+      <!-- Order ID Pill -->
+      <div class="order-id-pill">
+        <span class="order-id-label">SugarCloud Order ID:</span>
+        <span class="order-id-code" id="confirmOrderId">GINI-SUGARCLOUD-7294</span>
+      </div>
+
+      <!-- Admin Email Notification Badge -->
+      <div class="confirm-email-status" id="confirmEmailStatus">
+        <span class="confirm-email-icon">💌</span>
+        <span class="confirm-email-text" id="confirmEmailText">Order details notified to Admin's inbox</span>
+      </div>
+
+      <!-- Baker's Note Preview (if entered) -->
+      <div class="confirm-note-box" id="confirmNoteBox" style="display: none;">
+        <span class="confirm-note-tag">💌 Baker's Dedicated Note:</span>
+        <p class="confirm-note-text" id="confirmNoteText"></p>
+      </div>
+
+      <!-- Treats Inside Recap -->
+      <div class="confirm-items-recap">
+        <h4 class="recap-heading">Packed Treats Inside Your Box:</h4>
+        <div class="recap-list" id="confirmRecapList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="confirmation-actions">
+        <button class="btn btn-bakery-primary" id="btnConfirmNewOrder">
+          <span class="btn-icon">🍰</span>
+          <span>Order Another Box</span>
+        </button>
+        <button class="btn btn-bakery-secondary" id="btnConfirmOpenDesk">
+          <span class="btn-icon">📋</span>
+          <span>View in SugarCloud Desk</span>
+        </button>
+        <button class="btn-confirm-close" id="btnCloseConfirmation">
+          <span>Back to SugarCloud Counter</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BAKERY DESK MODAL (SIMULATED ORDER LOG & STATUS MANAGEMENT)
+       ============================================================ -->
+  <div class="modal-overlay bakery-desk-overlay" id="bakeryDeskModal" aria-hidden="true">
+    <div class="modal-card bakery-desk-card">
+      <button class="btn-back-home modal-close-btn" id="closeBakeryDeskModal" aria-label="Back to Bakery">
+        <span>← Back to Bakery</span>
+      </button>
+      <div class="desk-header">
+        <div class="desk-icon-badge">📋</div>
+        <div>
+          <span class="modal-tag">SUGARCLOUD DISPATCH</span>
+          <h2 class="modal-title">Gini's SugarCloud Order Desk ♡</h2>
+          <p class="modal-desc">Manage simulated SugarCloud orders and status updates for Shubhangini.</p>
+        </div>
+      </div>
+
+      <div class="desk-orders-container" id="deskOrdersContainer">
+        <!-- Rendered by JS: list of orders with status toggles -->
+      </div>
+
+      <div class="desk-footer">
+        <button class="btn-desk-clear" id="btnDeskClearOrders">Clear Order History</button>
+        <button class="btn btn-bakery-primary" id="btnCloseBakeryDesk">
+          <span>Return to SugarCloud Counter</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Music Controls (Fixed bottom-left, accessible anywhere while scrolling) -->
+  <div class="floating-music-bar" id="musicBar" aria-label="Floating Soundtrack Controller">
+    <div class="music-ctrl-buttons">
+      <button class="music-ctrl-btn" id="btnPrevTrack" title="Previous Song" aria-label="Previous track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+      <button class="music-ctrl-btn music-play-btn" id="btnPlayTrack" title="Play / Pause Song" aria-label="Play or pause soundtrack">
+        <span class="music-note-icon" id="musicNoteIcon">▶</span>
+      </button>
+      <button class="music-ctrl-btn" id="btnNextTrack" title="Next Song" aria-label="Next track">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Track notification tooltip & now playing preview -->
+    <div class="track-info-popup" id="trackInfoPopup">
+      <div class="track-popup-thumb-wrap">
+        <img src="Photos/music/JabTak_img3.jpg" id="trackPopupThumb" class="track-popup-thumb" alt="Track cover">
+      </div>
+      <div class="track-popup-details">
+        <span class="track-label">NOW PLAYING ♡</span>
+        <span class="track-title" id="trackTitle">Jab Tak</span>
+        <span class="track-artist" id="trackArtist">Armaan Malik</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Basket Pill (Quick access anytime) -->
+  <button class="sticky-cart-pill" id="btnStickyCart" aria-label="Open Gini's Dessert Basket" title="View Gini's Basket">
+    <span class="sticky-cart-icon">🧺</span>
+    <span class="sticky-cart-label">Gini's Basket</span>
+    <span class="sticky-cart-badge" id="stickyCartBadge">0</span>
+  </button>
+
+  <!-- Floating Cheerful Toast Container -->
+  <div class="bakery-toast-container" id="bakeryToastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="data/playlist.js?v=3"></script>
+  <script src="data/personal-letter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=15"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

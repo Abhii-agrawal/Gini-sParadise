@@ -579,9 +579,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let casetteTrackIdx = (isRecentState && typeof savedMusicState.trackIdx === 'number' && savedMusicState.trackIdx >= 0 && savedMusicState.trackIdx < playlist.length)
     ? savedMusicState.trackIdx
-    : randomInitialTrackIdx;
-
-  let isUserVoluntarilyPaused = (savedMusicState && savedMusicState.userPaused === true) || (localStorage.getItem(STORAGE_KEY_PAUSED) === 'true');
+  // On fresh visits or reloads, eager autoplay is enabled (only respect pause if during a recent 10-minute session)
+  let isUserVoluntarilyPaused = isRecentState && (
+    (savedMusicState && savedMusicState.userPaused === true) ||
+    (localStorage.getItem(STORAGE_KEY_PAUSED) === 'true')
+  );
   let isCasettePlaying = false;
   let isPausingOutroForCasette = false;
   let isShuffle = false;
@@ -2351,9 +2353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDots();
     renderTracklistGrid();
 
-    if (autoPlay) {
-      playCasette(showOverlay);
-    } else if (!isUserVoluntarilyPaused && savedMusicState && savedMusicState.isPlaying) {
+    if (autoPlay || !isUserVoluntarilyPaused) {
       playCasette(showOverlay);
     } else {
       pauseCasette();
@@ -2911,54 +2911,85 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initSeamlessMusicSystem() {
     let hasStarted = false;
 
-    function attemptAutoPlay() {
+    function attemptAutoPlay(force = false) {
       const outro = document.getElementById('outroVideoPlayer');
       if (outro && !outro.paused && !outro.muted && outro.volume > 0) return;
 
-      if (!isCasettePlaying) {
+      if (!isCasettePlaying || (casetteAudio && casetteAudio.paused)) {
         isUserVoluntarilyPaused = false;
-        playCasette(false);
+        try {
+          if (typeof playCasette === 'function') {
+            playCasette(false);
+          }
+        } catch (e) {
+          console.debug('Autoplay attempt caught:', e);
+        }
       }
     }
 
     window.attemptAutoPlay = attemptAutoPlay;
 
-    // 1. Attempt immediate playback on page load
+    // 1. Attempt immediate playback on cold load (works if browser permits or has audio engagement)
     attemptAutoPlay();
 
     window.addEventListener('load', () => {
-      if (!isCasettePlaying && !hasStarted) {
+      if (!isCasettePlaying || (casetteAudio && casetteAudio.paused)) {
         attemptAutoPlay();
       }
     });
 
-    // 2. User interaction fallback: If browser autoplay policy blocks unmuted audio on cold start,
-    // trigger playback instantly on the very first touch, click, scroll or keypress anywhere.
-    const gestureEvents = ['pointerdown', 'touchstart', 'click', 'keydown', 'wheel', 'scroll'];
-    const onFirstGesture = () => {
-      if (!isCasettePlaying && (!casetteAudio || casetteAudio.paused)) {
-        attemptAutoPlay();
+    // 2. User interaction fallback: If browser autoplay policy blocks audio on cold start,
+    // trigger playback instantly on the very first physical interaction (click, tap, touch, key).
+    // Note: 'wheel' and 'scroll' are intentionally excluded because browsers do not consider
+    // them valid user activations for unmuted audio.
+    const activationEvents = ['click', 'pointerdown', 'touchstart', 'touchend', 'keydown'];
+
+    const onUserActivation = (e) => {
+      // Do not re-trigger autoplay if the user explicitly clicked the sound toggle/pause button
+      const target = e && e.target;
+      if (target && (target.closest('#soundToggleBtn') || target.closest('#btnPlayTrack') || target.closest('.casette-btn-play'))) {
+        return;
       }
-      cleanupGestureListeners();
+
+      // Resume Web Audio Context if suspended (Safari requirement)
+      if (typeof casetteCtx !== 'undefined' && casetteCtx && casetteCtx.state === 'suspended') {
+        casetteCtx.resume().catch(() => {});
+      }
+
+      if (!isCasettePlaying || (casetteAudio && casetteAudio.paused)) {
+        isUserVoluntarilyPaused = false;
+        attemptAutoPlay(true);
+      }
+
+      // If audio is now successfully playing, detach the activation listeners
+      if (casetteAudio && !casetteAudio.paused) {
+        cleanupActivationListeners();
+      }
     };
 
-    function cleanupGestureListeners() {
-      gestureEvents.forEach(evt => {
-        window.removeEventListener(evt, onFirstGesture, { capture: true });
-        document.removeEventListener(evt, onFirstGesture, { capture: true });
+    function cleanupActivationListeners() {
+      activationEvents.forEach(evt => {
+        window.removeEventListener(evt, onUserActivation, { capture: true });
+        document.removeEventListener(evt, onUserActivation, { capture: true });
       });
     }
 
-    gestureEvents.forEach(evt => {
-      window.addEventListener(evt, onFirstGesture, { capture: true, passive: true });
-      document.addEventListener(evt, onFirstGesture, { capture: true, passive: true });
+    activationEvents.forEach(evt => {
+      window.addEventListener(evt, onUserActivation, { capture: true, passive: true });
+      document.addEventListener(evt, onUserActivation, { capture: true, passive: true });
     });
 
     if (casetteAudio) {
       casetteAudio.addEventListener('play', () => {
         hasStarted = true;
-        cleanupGestureListeners();
-      }, { once: true });
+        isCasettePlaying = true;
+        cleanupActivationListeners();
+      });
+      casetteAudio.addEventListener('playing', () => {
+        hasStarted = true;
+        isCasettePlaying = true;
+        cleanupActivationListeners();
+      });
     }
   })();
 
@@ -4041,11 +4072,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isIntroFinished) return;
       isIntroFinished = true;
 
+      // Resume Web Audio Context if suspended (Safari requirement)
+      if (typeof casetteCtx !== 'undefined' && casetteCtx && casetteCtx.state === 'suspended') {
+        casetteCtx.resume().catch(() => {});
+      }
+
       // Start background music seamlessly if available
       try {
-        if (typeof window.attemptAutoPlay === 'function' && !isCasettePlaying) {
-          window.attemptAutoPlay();
-        } else if (typeof window.playCasette === 'function' && !isCasettePlaying) {
+        if (typeof window.attemptAutoPlay === 'function') {
+          window.attemptAutoPlay(true);
+        } else if (typeof window.playCasette === 'function') {
           window.playCasette(false);
         }
       } catch (e) {}
@@ -4064,6 +4100,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto-transition after 5.6s
     const introTimer = setTimeout(finishIntroTransition, 5600);
+
+    // Clicking or tapping ANYWHERE on the intro screen immediately enters with music!
+    introOverlay.addEventListener('click', () => {
+      clearTimeout(introTimer);
+      finishIntroTransition();
+    });
 
     // Skip button manual trigger
     if (skipBtn) {

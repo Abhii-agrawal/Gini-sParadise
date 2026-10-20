@@ -21,7 +21,7 @@
   <link rel="preload" href="outro-video.mp4" as="video" type="video/mp4">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=16">
 
   <!-- Instant Theme Persistence (Anti-FOUC: Default Light Mode) -->
   <script>
@@ -77,6 +77,12 @@
       <p class="intro-subtitle" id="introSubtitle">
         proof that the universe has a favourite. ✨
       </p>
+
+      <!-- Interactive Tap Anywhere to Enter with Music Prompt -->
+      <div class="intro-enter-badge" id="introEnterBadge" role="button" tabindex="0" aria-label="Tap anywhere to enter with music">
+        <span class="enter-icon">🎵</span>
+        <span class="enter-text">Tap anywhere to enter with music ♡</span>
+      </div>
     </div>
 
     <!-- Bottom Left Growing Blue Rose Vine SVG -->
@@ -1732,7 +1738,7 @@
   <script src="data/playlist.js?v=3"></script>
   <script src="data/personal-letter.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();

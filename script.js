@@ -579,11 +579,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let casetteTrackIdx = (isRecentState && typeof savedMusicState.trackIdx === 'number' && savedMusicState.trackIdx >= 0 && savedMusicState.trackIdx < playlist.length)
     ? savedMusicState.trackIdx
-  // On fresh visits or reloads, eager autoplay is enabled (only respect pause if during a recent 10-minute session)
-  let isUserVoluntarilyPaused = isRecentState && (
-    (savedMusicState && savedMusicState.userPaused === true) ||
-    (localStorage.getItem(STORAGE_KEY_PAUSED) === 'true')
-  );
+    : randomInitialTrackIdx;
+
+  let isUserVoluntarilyPaused = (savedMusicState && savedMusicState.userPaused === true) || (localStorage.getItem(STORAGE_KEY_PAUSED) === 'true');
   let isCasettePlaying = false;
   let isPausingOutroForCasette = false;
   let isShuffle = false;
@@ -607,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Real Audio Player Instance
   const casetteAudio = new Audio();
-  casetteAudio.preload = 'metadata';
+  casetteAudio.preload = 'auto';
   window.casetteAudio = casetteAudio;
 
   // Floating Controller & Navbar Elements
@@ -2353,7 +2351,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderDots();
     renderTracklistGrid();
 
-    if (autoPlay || !isUserVoluntarilyPaused) {
+    if (autoPlay) {
+      playCasette(showOverlay);
+    } else if (!isUserVoluntarilyPaused && savedMusicState && savedMusicState.isPlaying) {
       playCasette(showOverlay);
     } else {
       pauseCasette();
@@ -2901,19 +2901,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.triggerJukeboxRoulette = triggerJukeboxRoulette;
 
-  // Initial Load: Render tracklist & load track
+  // Initial Load: Render tracklist & load track with autoplay enabled by default
   renderTracklistGrid();
-  loadTrack(casetteTrackIdx, false);
+  loadTrack(casetteTrackIdx, !isUserVoluntarilyPaused);
 
   // ------------------------------------------------------------
   // SEAMLESS MUSIC PLAYBACK SYSTEM (ACROSS ALL SECTIONS & PAGES)
+  // Automatic playback on website open with silent touch/scroll fallback
   // ------------------------------------------------------------
   (function initSeamlessMusicSystem() {
     let hasStarted = false;
 
-    function attemptAutoPlay(force = false) {
+    function attemptAutoPlay() {
       const outro = document.getElementById('outroVideoPlayer');
       if (outro && !outro.paused && !outro.muted && outro.volume > 0) return;
+      if (isUserVoluntarilyPaused) return;
+
+      // Resume Web Audio Context if suspended (macOS/iOS Safari requirement)
+      if (typeof casetteCtx !== 'undefined' && casetteCtx && casetteCtx.state === 'suspended') {
+        casetteCtx.resume().catch(() => {});
+      }
 
       if (!isCasettePlaying || (casetteAudio && casetteAudio.paused)) {
         isUserVoluntarilyPaused = false;
@@ -2929,7 +2936,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.attemptAutoPlay = attemptAutoPlay;
 
-    // 1. Attempt immediate playback on cold load (works if browser permits or has audio engagement)
+    // 1. Attempt immediate playback on cold load
     attemptAutoPlay();
 
     window.addEventListener('load', () => {
@@ -2938,16 +2945,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 2. User interaction fallback: If browser autoplay policy blocks audio on cold start,
-    // trigger playback instantly on the very first physical interaction (click, tap, touch, key).
-    // Note: 'wheel' and 'scroll' are intentionally excluded because browsers do not consider
-    // them valid user activations for unmuted audio.
-    const activationEvents = ['click', 'pointerdown', 'touchstart', 'touchend', 'keydown'];
+    // 2. User activation fallback: If browser autoplay policy defers unmuted audio on cold start,
+    // trigger playback silently on the very first physical interaction (touch, click, scroll, wheel, key).
+    const activationEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'wheel', 'keydown'];
 
     const onUserActivation = (e) => {
-      // Do not re-trigger autoplay if the user explicitly clicked the sound toggle/pause button
+      // Do not re-trigger autoplay if the user explicitly clicked the pause/mute buttons
       const target = e && e.target;
-      if (target && (target.closest('#soundToggleBtn') || target.closest('#btnPlayTrack') || target.closest('.casette-btn-play'))) {
+      if (target && (target.closest('#soundToggleBtn') || target.closest('#btnPlayTrack') || target.closest('.casette-play-circle'))) {
         return;
       }
 
@@ -2958,10 +2963,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!isCasettePlaying || (casetteAudio && casetteAudio.paused)) {
         isUserVoluntarilyPaused = false;
-        attemptAutoPlay(true);
+        attemptAutoPlay();
       }
 
-      // If audio is now successfully playing, detach the activation listeners
       if (casetteAudio && !casetteAudio.paused) {
         cleanupActivationListeners();
       }
@@ -3977,147 +3981,5 @@ document.addEventListener('DOMContentLoaded', () => {
       updateScrollspyActive();
     }
   });
-
-  // ------------------------------------------------------------
-  // CINEMATIC BLACK SCREEN INTRO: THE GINI PARADISE & GROWING BLUE ROSES
-  // ------------------------------------------------------------
-  function initSiteIntro() {
-    const introOverlay = document.getElementById('siteIntroScreen');
-    if (!introOverlay) return;
-
-    const typedTextEl = document.getElementById('introTypedText');
-    const subtitleEl = document.getElementById('introSubtitle');
-    const skipBtn = document.getElementById('introSkipBtn');
-
-    const titleToType = "Welcome to Gini's Paradise ♡";
-    let isIntroFinished = false;
-
-    // Ensure body has intro-active initially
-    document.body.classList.add('intro-active');
-
-    // Setup SVG stem lengths for smooth stroke-dashoffset drawing
-    const stems = introOverlay.querySelectorAll('.vine-stem');
-    stems.forEach(stem => {
-      try {
-        const len = stem.getTotalLength ? stem.getTotalLength() : 100;
-        stem.style.strokeDasharray = `${len}`;
-        stem.style.strokeDashoffset = `${len}`;
-      } catch (e) {
-        stem.style.strokeDasharray = '100';
-        stem.style.strokeDashoffset = '100';
-      }
-    });
-
-    // 1. Typewriter Animation for "Welcome to Gini's Paradise ♡"
-    let charIdx = 0;
-    function runTypewriter() {
-      if (isIntroFinished) return;
-      if (charIdx < titleToType.length) {
-        if (typedTextEl) {
-          typedTextEl.textContent += titleToType.charAt(charIdx);
-        }
-        charIdx++;
-        setTimeout(runTypewriter, 55);
-      } else {
-        // Typing finished -> show subtitle softly
-        setTimeout(() => {
-          if (!isIntroFinished && subtitleEl) {
-            subtitleEl.classList.add('is-visible');
-          }
-        }, 320);
-      }
-    }
-
-    // Start typewriter at T = 350ms
-    setTimeout(runTypewriter, 350);
-
-    // 2. Botanical Vine Stem Growth from bottom-left & bottom-right
-    // Trigger at T = 1500ms
-    setTimeout(() => {
-      if (isIntroFinished) return;
-      stems.forEach(stem => {
-        stem.style.strokeDashoffset = '0';
-        stem.classList.add('stem-drawn');
-      });
-    }, 1500);
-
-    // 3. Sequential Leaves Unfurling (From Root to Tip)
-    // Leaf 1 (near root) at T = 2200ms
-    setTimeout(() => {
-      if (isIntroFinished) return;
-      introOverlay.querySelectorAll('.vine-leaf-1').forEach(leaf => leaf.classList.add('leaf-grown'));
-    }, 2200);
-
-    // Leaf 2 & 3 (mid branches) at T = 2750ms
-    setTimeout(() => {
-      if (isIntroFinished) return;
-      introOverlay.querySelectorAll('.vine-leaf-2, .vine-leaf-3').forEach(leaf => leaf.classList.add('leaf-grown'));
-    }, 2750);
-
-    // Leaf 4 (sub-terminal below rose) at T = 3200ms
-    setTimeout(() => {
-      if (isIntroFinished) return;
-      introOverlay.querySelectorAll('.vine-leaf-4').forEach(leaf => leaf.classList.add('leaf-grown'));
-    }, 3200);
-
-    // 4. Blue Rose Blooming at Crest of Vines at T = 3500ms
-    setTimeout(() => {
-      if (isIntroFinished) return;
-      introOverlay.querySelectorAll('.vine-rose-bloom').forEach(rose => rose.classList.add('rose-bloomed'));
-    }, 3500);
-
-    // 5. Finish and Smooth Dissolve Transition into Main Site
-    // At T = 5600ms (satisfies the >= 5s transition requirement)
-    function finishIntroTransition() {
-      if (isIntroFinished) return;
-      isIntroFinished = true;
-
-      // Resume Web Audio Context if suspended (Safari requirement)
-      if (typeof casetteCtx !== 'undefined' && casetteCtx && casetteCtx.state === 'suspended') {
-        casetteCtx.resume().catch(() => {});
-      }
-
-      // Start background music seamlessly if available
-      try {
-        if (typeof window.attemptAutoPlay === 'function') {
-          window.attemptAutoPlay(true);
-        } else if (typeof window.playCasette === 'function') {
-          window.playCasette(false);
-        }
-      } catch (e) {}
-
-      // Fade out the black screen with cinematic blur & scale
-      introOverlay.classList.add('is-fading-out');
-
-      // Re-enable document scrolling
-      document.body.classList.remove('intro-active');
-
-      setTimeout(() => {
-        introOverlay.style.display = 'none';
-        introOverlay.setAttribute('aria-hidden', 'true');
-      }, 1300);
-    }
-
-    // Auto-transition after 5.6s
-    const introTimer = setTimeout(finishIntroTransition, 5600);
-
-    // Clicking or tapping ANYWHERE on the intro screen immediately enters with music!
-    introOverlay.addEventListener('click', () => {
-      clearTimeout(introTimer);
-      finishIntroTransition();
-    });
-
-    // Skip button manual trigger
-    if (skipBtn) {
-      skipBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clearTimeout(introTimer);
-        finishIntroTransition();
-      });
-    }
-  }
-
-    // Initialize intro on page load
-    initSiteIntro();
-  });
+});
 

@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "headers": [
     {
-      "source": "/(.*)\\\\.(mp4|mp3|m4a|wav|ogg|jpg|jpeg|png|svg|avif|webp)",
+      "source": "/(.*)\\.(mp4|mp3|m4a|wav|ogg|jpg|jpeg|png|svg|avif|webp)",
       "headers": [
         {
           "key": "Cache-Control",
